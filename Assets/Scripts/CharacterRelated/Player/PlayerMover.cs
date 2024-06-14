@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class PlayerMover : MonoBehaviour
@@ -18,7 +19,7 @@ public class PlayerMover : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (_inputDir != Vector2.zero && !_isMoving)
+        if (_inputDir != Vector2.zero && !_isMoving && CanMoveThere())
         {
             StartCoroutine(MovePlayer(_inputDir));
         }
@@ -37,17 +38,29 @@ public class PlayerMover : MonoBehaviour
 
         _originalPos = transform.position;
         _nextPos = _originalPos + direction;
-
+        
         while (elapsedTime <= _moveTime)
         {
-            transform.position = Vector2.Lerp(_originalPos, _nextPos, (elapsedTime / _moveTime));
+            transform.position = Vector2.Lerp(_originalPos, _nextPos, elapsedTime / _moveTime);
             elapsedTime += Time.deltaTime;
 
             yield return null;
         }
-
+            
         transform.position = _nextPos;
-
+        
         _isMoving = false;
+    }
+
+    bool CanMoveThere()
+    {
+        Vector2 castSize = new Vector2(0.5f, 0.5f);
+        Vector2 castDir = _inputDir;
+        if (Physics2D.BoxCast(transform.position, castSize, 0f, castDir, 0.25f, LayerMask.GetMask("Obstacle")))
+        {
+            return false;
+        }
+
+        return true;
     }
 }
