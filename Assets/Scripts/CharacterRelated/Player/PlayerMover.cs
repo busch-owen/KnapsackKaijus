@@ -14,7 +14,6 @@ public class PlayerMover : MonoBehaviour
     
     private void Awake()
     {
-        // stuff happens here
     }
 
     private void FixedUpdate()
