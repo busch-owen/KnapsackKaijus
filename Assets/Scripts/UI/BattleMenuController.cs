@@ -1,4 +1,5 @@
 using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
@@ -13,30 +14,45 @@ public class BattleMenuController : MonoBehaviour
     [SerializeField] private GameObject interactionMenu;
     private GameObject _currentMenu;
 
+    private TurnHandler _turnHandler;
+    
     private Kaiju _playerKaiju;
     private EnemyKaiju _enemyKaiju;
     private UnityEvent _cancelPressed;
 
     private Button[] _attackButtons;
 
+    private RoundStatusHandler _statusHandler;
+    
     [field: SerializeField] public Image EnemyHealthBar { get; private set; }
     [field: SerializeField] public Image PlayerHealthBar { get; private set; }
+
+    [SerializeField] private TMP_Text enemyName;
+    [SerializeField] private TMP_Text playerName;
+    [SerializeField] private TMP_Text enemyLvl;
+    [SerializeField] private TMP_Text playerLvl;
 
     private void Awake()
     {
         _eventSystem = FindFirstObjectByType<EventSystem>();
+        _turnHandler = FindFirstObjectByType<TurnHandler>();
+        _statusHandler = FindFirstObjectByType<RoundStatusHandler>();
         _inputModule = _eventSystem.GetComponent<InputSystemUIInputModule>();
         _attackButtons = attackMenu.GetComponentsInChildren<Button>();
         _playerKaiju = FindFirstObjectByType<PlayerKaiju>();
         _enemyKaiju = FindFirstObjectByType<EnemyKaiju>();
+        
+        RenewEnemyStatValues();
+        RenewPlayerStatValues();
 
         for (int i = 0; i < _attackButtons.Length; i++)
         {
             if (_playerKaiju.LearnedMoves[i] != null)
             {
-                Debug.Log(i);
-                var i1 = i;
-                _attackButtons[i].onClick.AddListener(delegate { _playerKaiju.Attack(_enemyKaiju, i1);});
+                var moveIndex = i;
+                _attackButtons[i].onClick.AddListener(delegate {_turnHandler.DetermineFirstKaiju(_playerKaiju, _enemyKaiju, moveIndex); });
+                _attackButtons[i].onClick.AddListener(delegate { StartCoroutine(_statusHandler.DisplayDetails()); });
+                _attackButtons[i].onClick.AddListener(ReturnToMainMenu);
             }
             else
             {
@@ -91,10 +107,31 @@ public class BattleMenuController : MonoBehaviour
         _cancelPressed.AddListener(ReturnToMainMenu);
     }
 
+
+    private void RenewPlayerStatValues()
+    {
+        UpdateSpecificName(playerName, _playerKaiju.KaijuStats.KaijuName);
+        UpdateLevelValue(playerLvl, _playerKaiju.Level);
+    }
+    private void RenewEnemyStatValues()
+    {
+        UpdateSpecificName(enemyName, _enemyKaiju.KaijuStats.KaijuName);
+        UpdateLevelValue(enemyLvl, _enemyKaiju.Level);
+    }
+    
+    public void UpdateSpecificName(TMP_Text nameText, string name)
+    {
+        nameText.text = name;
+    }
+
+    public void UpdateLevelValue(TMP_Text levelText, int value)
+    {
+        levelText.text = $"LV: {value}";
+    }
+    
     public void UpdateEnemyHealthBar(float valueToUpdate, float valueToMultBy)
     {
         EnemyHealthBar.fillAmount = valueToUpdate / valueToMultBy;
-        Debug.LogFormat($"The new current health is {valueToUpdate}. The value to divide by is {valueToMultBy}. Combined, the value getting posted on the health bar is {valueToUpdate / valueToMultBy}");
     }
     public void UpdatePlayerHealthBar(float valueToUpdate, float valueToMultBy)
     {
