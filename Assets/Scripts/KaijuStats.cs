@@ -5,6 +5,7 @@ public class KaijuStats : ScriptableObject
 {
     [Header("Battle Attributes"), Space(10)]
     [SerializeField] private Types type;
+    [SerializeField] private Types weakType;
     [SerializeField] private float health;
     [SerializeField] private float attack;
     [SerializeField] private float defense;
