@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd6dd5a8d226d244e87c7ad88a940618, type: 3}
   m_Name: FireKaijuStats
   m_EditorClassIdentifier: 
-  type: 0
-  health: 0
-  defense: 0
-  spAttack: 0
-  spDefense: 0
-  attack: 0
-  speed: 0
+  <Type>k__BackingField: 0
+  <WeakType>k__BackingField: 2
+  <Health>k__BackingField: 10
+  <Attack>k__BackingField: 4
+  <Defense>k__BackingField: 2
+  <SpAttack>k__BackingField: 7
+  <SpDefense>k__BackingField: 4
+  <Speed>k__BackingField: 7
+  <BattleSprite>k__BackingField: {fileID: 0}

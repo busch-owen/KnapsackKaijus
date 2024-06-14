@@ -13,12 +13,38 @@ public class BattleMenuController : MonoBehaviour
     [SerializeField] private GameObject interactionMenu;
     private GameObject _currentMenu;
 
+    private Kaiju _playerKaiju;
+    private EnemyKaiju _enemyKaiju;
     private UnityEvent _cancelPressed;
+
+    private Button[] _attackButtons;
+
+    [field: SerializeField] public Image EnemyHealthBar { get; private set; }
+    [field: SerializeField] public Image PlayerHealthBar { get; private set; }
 
     private void Awake()
     {
         _eventSystem = FindFirstObjectByType<EventSystem>();
         _inputModule = _eventSystem.GetComponent<InputSystemUIInputModule>();
+        _attackButtons = attackMenu.GetComponentsInChildren<Button>();
+        _playerKaiju = FindFirstObjectByType<PlayerKaiju>();
+        _enemyKaiju = FindFirstObjectByType<EnemyKaiju>();
+
+        for (int i = 0; i < _attackButtons.Length; i++)
+        {
+            if (_playerKaiju.LearnedMoves[i] != null)
+            {
+                Debug.Log(i);
+                var i1 = i;
+                _attackButtons[i].onClick.AddListener(delegate { _playerKaiju.Attack(_enemyKaiju, i1);});
+            }
+            else
+            {
+                _attackButtons[i].gameObject.SetActive(false);
+            }
+        }
+        
+        attackMenu.SetActive(false);
         
         _cancelPressed ??= new UnityEvent();
         
@@ -63,5 +89,15 @@ public class BattleMenuController : MonoBehaviour
     private void AssignEventListeners()
     {
         _cancelPressed.AddListener(ReturnToMainMenu);
+    }
+
+    public void UpdateEnemyHealthBar(float valueToUpdate, float valueToMultBy)
+    {
+        EnemyHealthBar.fillAmount = valueToUpdate / valueToMultBy;
+        Debug.LogFormat($"The new current health is {valueToUpdate}. The value to divide by is {valueToMultBy}. Combined, the value getting posted on the health bar is {valueToUpdate / valueToMultBy}");
+    }
+    public void UpdatePlayerHealthBar(float valueToUpdate, float valueToMultBy)
+    {
+        PlayerHealthBar.fillAmount = valueToUpdate / valueToMultBy;
     }
 }
