@@ -6,7 +6,7 @@ public class Kaiju : MonoBehaviour
     #region Local stats
 
     [field: SerializeField] public KaijuStats KaijuStats { get; private set; }
-
+    
     private Types _localType;
     private Types _localWeakType;
     private float _localHealth;
@@ -26,8 +26,12 @@ public class Kaiju : MonoBehaviour
 
     #endregion
 
+    private bool _isDead;
+
     private BattleMenuController _battleMenuController;
     private RoundStatusHandler _statusHandler;
+
+    private UnityEvent _kaijuHasDied;
 
     private void Awake()
     {
@@ -45,6 +49,9 @@ public class Kaiju : MonoBehaviour
 
         _battleMenuController = FindFirstObjectByType<BattleMenuController>();
         _statusHandler = FindFirstObjectByType<RoundStatusHandler>();
+
+        _kaijuHasDied ??= new UnityEvent();
+        
     }
 
     private void TakeDamage(float damageToDeal, MoveStats movePerformed)
@@ -90,12 +97,15 @@ public class Kaiju : MonoBehaviour
         if (_currentHealth <= 0)
         {
             _statusHandler.AddToDetails($"{KaijuStats.KaijuName} has brutally died");
-            //Die();
+            Die();
         }
     }
 
     public void Attack(Kaiju targetKaiju, int moveToPerformIndex)
     {
+        if (_isDead) return;
+        
+        _kaijuHasDied.AddListener(delegate { _statusHandler.DisplayBattleWon(targetKaiju.KaijuStats.KaijuName); });
         _statusHandler.AddToDetails($"{KaijuStats.KaijuName} used {LearnedMoves[moveToPerformIndex].MoveName}!");
         switch (LearnedMoves[moveToPerformIndex].CombatType)
         {
@@ -112,8 +122,10 @@ public class Kaiju : MonoBehaviour
         }
     }
 
-    public void Die()
+    private void Die()
     {
+        _isDead = true;
         Destroy(gameObject);
+        _kaijuHasDied.Invoke();
     }
 }
