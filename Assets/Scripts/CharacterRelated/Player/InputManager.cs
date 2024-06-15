@@ -1,5 +1,4 @@
 using System;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class InputManager : MonoBehaviour
@@ -23,11 +22,37 @@ public class InputManager : MonoBehaviour
                 _input.Player.Move.canceled += ctx => _playerMover.ProcessMovement(ctx.ReadValue<Vector2>());
             }
         }
+        GameManager.Instance.PlayerInputState += OnPlayerInputStateChanged;
         _input.Enable();
     }
 
     private void OnDisable()
     {
         _input.Disable();
+        GameManager.Instance.PlayerInputState -= OnPlayerInputStateChanged;
+    }
+
+    void OnPlayerInputStateChanged(bool isEnabled)
+    {
+        if (isEnabled)
+        {
+            SubscribeToInputs();
+        }
+        else
+        {
+            UnsubscribeFromInputs();
+        }
+    }
+
+    void SubscribeToInputs()
+    {
+        _input.Player.Move.started += ctx => _playerMover.ProcessMovement(ctx.ReadValue<Vector2>());
+        _input.Player.Move.canceled += ctx => _playerMover.ProcessMovement(ctx.ReadValue<Vector2>());
+    }
+
+    void UnsubscribeFromInputs()
+    {
+        _input.Player.Move.started -= ctx => _playerMover.ProcessMovement(ctx.ReadValue<Vector2>());
+        _input.Player.Move.canceled -= ctx => _playerMover.ProcessMovement(ctx.ReadValue<Vector2>());
     }
 }

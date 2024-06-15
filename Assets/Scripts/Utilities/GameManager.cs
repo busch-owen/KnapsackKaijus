@@ -4,17 +4,20 @@ using UnityEngine;
 public class GameManager : Singleton<GameManager>
 {
     public bool IsPlayerInputDisabled { get; private set; }
-    public event Action OnPlayerInputStateChanged;
+
+    public delegate void OnPlayerInputStateChanged(bool currentState);
+
+    public event OnPlayerInputStateChanged PlayerInputState;
 
     public void DisablePlayerInput()
     {
         IsPlayerInputDisabled = true;
-        OnPlayerInputStateChanged?.Invoke();
+        PlayerInputState?.Invoke(IsPlayerInputDisabled);
     }
 
     public void EnablePlayerInput()
     {
         IsPlayerInputDisabled = false;
-        OnPlayerInputStateChanged?.Invoke();
+        PlayerInputState?.Invoke(IsPlayerInputDisabled);
     }
 }
