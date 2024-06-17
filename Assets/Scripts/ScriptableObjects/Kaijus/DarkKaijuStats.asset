@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd6dd5a8d226d244e87c7ad88a940618, type: 3}
   m_Name: DarkKaijuStats
   m_EditorClassIdentifier: 
-  type: 4
-  health: 0
-  defense: 0
-  spAttack: 0
-  spDefense: 0
-  attack: 0
-  speed: 0
-  battleSprite: {fileID: 0}
+  <KaijuName>k__BackingField: Dark Kaiju
+  <Type>k__BackingField: 4
+  <WeakType>k__BackingField: 0
+  <Health>k__BackingField: 12
+  <Attack>k__BackingField: 6
+  <Defense>k__BackingField: 5
+  <SpAttack>k__BackingField: 7
+  <SpDefense>k__BackingField: 4
+  <Speed>k__BackingField: 9

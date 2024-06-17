@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd6dd5a8d226d244e87c7ad88a940618, type: 3}
   m_Name: AirKaijuStats
   m_EditorClassIdentifier: 
-  type: 1
-  health: 15
-  attack: 6
-  defense: 5
-  spAttack: 4
-  spDefense: 9
-  speed: 9
-  battleSprite: {fileID: 0}
+  <KaijuName>k__BackingField: Air Kaiju
+  <Type>k__BackingField: 1
+  <WeakType>k__BackingField: 4
+  <Health>k__BackingField: 11
+  <Attack>k__BackingField: 3
+  <Defense>k__BackingField: 5
+  <SpAttack>k__BackingField: 6
+  <SpDefense>k__BackingField: 4
+  <Speed>k__BackingField: 12
