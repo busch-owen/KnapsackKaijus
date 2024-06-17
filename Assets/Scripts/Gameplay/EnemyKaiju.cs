@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class EnemyKaiju : Kaiju
 {
 
@@ -5,6 +7,12 @@ public class EnemyKaiju : Kaiju
     {
         _targetKaiju = FindFirstObjectByType<PlayerKaiju>();
         base.TakeDamage(damageToDeal, movePerformed);
+    }
+
+    public override void Attack(Kaiju targetKaiju, int moveToPerformIndex)
+    {
+        moveToPerformIndex = Random.Range(0, LearnedMoves.Length);
+        base.Attack(targetKaiju, moveToPerformIndex);
     }
     
     protected override void Die()

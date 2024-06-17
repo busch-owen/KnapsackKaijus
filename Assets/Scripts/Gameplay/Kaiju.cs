@@ -120,7 +120,7 @@ public class Kaiju : MonoBehaviour
         }
     }
 
-    public void Attack(Kaiju targetKaiju, int moveToPerformIndex)
+    public virtual void Attack(Kaiju targetKaiju, int moveToPerformIndex)
     {
         if (_isDead) return;
         
