@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: WaterKaijuStats
   m_EditorClassIdentifier: 
   <KaijuName>k__BackingField: Water Kaiju
-  <BattleSprite>k__BackingField: {fileID: 0}
   <Type>k__BackingField: 2
   <WeakType>k__BackingField: 3
   <Health>k__BackingField: 10

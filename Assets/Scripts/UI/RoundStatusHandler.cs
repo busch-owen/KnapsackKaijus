@@ -1,14 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using JetBrains.Annotations;
 using UnityEngine;
 using TMPro;
 using UnityEngine.Events;
 
 public class RoundStatusHandler : MonoBehaviour
 {
-    private List<string> _detailsToDisplay = new List<string>();
+    public List<string> _detailsToDisplay = new List<string>();
 
     [SerializeField] private GameObject displayWindow;
     [SerializeField] private TMP_Text displayText; 
@@ -45,7 +44,8 @@ public class RoundStatusHandler : MonoBehaviour
             displayText.text = _detailsToDisplay[i];
             yield return _waitForDuration;
         }
-        _detailsToDisplay.Clear();
+        ClearDetails();
+        displayText.text = "your shit broke jackass";
         displayWindow.SetActive(false);
         if (!_turnHandler.AttackerTwoTurn)
             _firstDetailsFinished.Invoke();
@@ -58,7 +58,7 @@ public class RoundStatusHandler : MonoBehaviour
         StartCoroutine(DisplayDetails());
     }
 
-    public void DisplayXPGain(int xpGained)
+    public void DisplayXpGain(int xpGained)
     {
         StopCoroutine(DisplayDetails());
         AddToDetails($"You gained {xpGained}XP!");
@@ -70,6 +70,11 @@ public class RoundStatusHandler : MonoBehaviour
         StopCoroutine(DisplayDetails());
         AddToDetails($"{targetKaiju.KaijuStats.KaijuName} leveled up to level {newLevel}!");
         StartCoroutine(DisplayDetails());
+    }
+
+    public void ClearDetails()
+    {
+        _detailsToDisplay.Clear();
     }
         
 }

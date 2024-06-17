@@ -17,7 +17,7 @@ MonoBehaviour:
     x: 0
     y: 43
     width: 1920
-    height: 885
+    height: 989
   m_ShowMode: 4
   m_Title: Project
   m_RootView: {fileID: 2}
@@ -45,7 +45,7 @@ MonoBehaviour:
     x: 0
     y: 0
     width: 1920
-    height: 885
+    height: 989
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
   m_UseTopView: 1
@@ -90,7 +90,7 @@ MonoBehaviour:
   m_Position:
     serializedVersion: 2
     x: 0
-    y: 865
+    y: 969
     width: 1920
     height: 20
   m_MinSize: {x: 0, y: 0}
@@ -297,7 +297,7 @@ MonoBehaviour:
     x: 1456
     y: 0
     width: 464
-    height: 835
+    height: 939
   m_MinSize: {x: 276, y: 71}
   m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 18}
@@ -399,7 +399,7 @@ MonoBehaviour:
       width: 174.53734
       height: 176.10976
     m_MinimalGUI: 1
-  m_defaultScale: 3
+  m_defaultScale: 0.14453125
   m_LastWindowPixelSize: {x: 555, y: 581}
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
@@ -1065,9 +1065,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: 0.16593844, y: -0.117688894, z: 0.35733208}
+    m_Target: {x: 76.49015, y: 68.93463, z: 0.072130516}
     speed: 2
-    m_Value: {x: 88.86253, y: 97.74715, z: -1.2268298}
+    m_Value: {x: 0.16593844, y: -0.117688894, z: 0.35733208}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1117,9 +1117,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 7.6109114
+    m_Target: 83.8419
     speed: 2
-    m_Value: 138.8071
+    m_Value: 7.6109114
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -1216,7 +1216,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 27}
     m_SelectedIDs: 44c70000
     m_LastClickedID: 51012
-    m_ExpandedIDs: 0000000008c700000ac700000cc70000
+    m_ExpandedIDs: 0000000014cd000016cd000018cd00001acd00001ccd0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1245,7 +1245,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000008c700000ac700000cc70000
+    m_ExpandedIDs: 0000000014cd000016cd000018cd00001acd00001ccd0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1363,7 +1363,7 @@ MonoBehaviour:
     x: 1457
     y: 19
     width: 463
-    height: 814
+    height: 918
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0

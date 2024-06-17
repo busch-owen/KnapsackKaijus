@@ -14,5 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <MoveName>k__BackingField: Water Special
   <MoveType>k__BackingField: 2
-  <PP>k__BackingField: 15
+  <PP>k__BackingField: 10
+  <Strength>k__BackingField: 30
+  <Accuracy>k__BackingField: 100
   <CombatType>k__BackingField: 1

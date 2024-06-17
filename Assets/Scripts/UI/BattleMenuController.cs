@@ -45,11 +45,12 @@ public class BattleMenuController : MonoBehaviour
         RenewEnemyStatValues();
         RenewPlayerStatValues();
 
-        for (int i = 0; i < _attackButtons.Length; i++)
+        for (var i = 0; i < _attackButtons.Length; i++)
         {
             if (_playerKaiju.LearnedMoves[i] != null)
             {
                 var moveIndex = i;
+                _attackButtons[i].GetComponentInChildren<TMP_Text>().text = _playerKaiju.LearnedMoves[i].MoveName;
                 _attackButtons[i].onClick.AddListener(delegate {_turnHandler.DetermineFirstKaiju(_playerKaiju, _enemyKaiju, moveIndex); });
                 _attackButtons[i].onClick.AddListener(delegate { StartCoroutine(_statusHandler.DisplayDetails()); });
                 _attackButtons[i].onClick.AddListener(ReturnToMainMenu);
@@ -106,7 +107,6 @@ public class BattleMenuController : MonoBehaviour
     {
         _cancelPressed.AddListener(ReturnToMainMenu);
     }
-
 
     public void RenewPlayerStatValues()
     {

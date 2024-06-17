@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: FireKaijuStats
   m_EditorClassIdentifier: 
   <KaijuName>k__BackingField: Fire Kaiju
-  <BattleSprite>k__BackingField: {fileID: 0}
   <Type>k__BackingField: 0
   <WeakType>k__BackingField: 2
   <Health>k__BackingField: 10
@@ -21,4 +20,4 @@ MonoBehaviour:
   <Defense>k__BackingField: 2
   <SpAttack>k__BackingField: 2
   <SpDefense>k__BackingField: 4
-  <Speed>k__BackingField: 90
+  <Speed>k__BackingField: 5

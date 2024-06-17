@@ -1,11 +1,11 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 public class Kaiju : MonoBehaviour
 {
     #region Local stats
-
     [field: SerializeField] public KaijuStats KaijuStats { get; private set; }
     
     private Types _localType;
@@ -19,6 +19,7 @@ public class Kaiju : MonoBehaviour
     public float LocalSpeed { get; private set; }
 
     [field: SerializeField] public MoveStats[] LearnedMoves { get; private set; } = new MoveStats[4];
+    public int[] MovePP { get; private set; }  = new int[4];
 
     [field: SerializeField] public int Level { get; internal set; }
     [SerializeField] internal int levelProgression;
@@ -27,16 +28,18 @@ public class Kaiju : MonoBehaviour
     [SerializeField] private float statLevelIncrement;
     [SerializeField] private float statLevelMultiplier;
 
-    #endregion
-
     private bool _isDead;
-
+    
+    #endregion
+    
+    #region Handlers and Events
     protected BattleMenuController _battleMenuController;
     protected RoundStatusHandler _statusHandler;
 
     private UnityEvent _kaijuHasDied;
 
     protected Kaiju _targetKaiju;
+    #endregion
 
     private void Awake()
     {
@@ -58,10 +61,19 @@ public class Kaiju : MonoBehaviour
         _statusHandler = FindFirstObjectByType<RoundStatusHandler>();
 
         _kaijuHasDied ??= new UnityEvent();
-        
     }
 
-    private void TakeDamage(float damageToDeal, MoveStats movePerformed)
+    private void Start()
+    {
+        for(var i = 0; i < LearnedMoves.Length; i++)
+        {
+            if (LearnedMoves[i] == null) return;
+            
+            MovePP[i] = LearnedMoves[i].PP;
+        }
+    }
+
+    protected virtual void TakeDamage(float damageToDeal, MoveStats movePerformed)
     {
         //Check for if the attack dealt is physical or special attack, then dampen damage accordingly
         //Additionally, check if the attacker's move type is a super effective type towards this Kaiju
@@ -114,17 +126,34 @@ public class Kaiju : MonoBehaviour
         
         _targetKaiju = targetKaiju;
         _statusHandler.AddToDetails($"{KaijuStats.KaijuName} used {LearnedMoves[moveToPerformIndex].MoveName}!");
+
+        if (MovePP[moveToPerformIndex] <= 0)
+        {
+            _statusHandler.AddToDetails($"But it failed...");
+            return;
+        }
+        var moveWillHit = Random.Range(0, 100);
+        if (moveWillHit > LearnedMoves[moveToPerformIndex].Accuracy)
+        {
+            _statusHandler.AddToDetails($"But it missed...");
+            return;
+        }
+
+        var movePower = (100 - LearnedMoves[moveToPerformIndex].Strength) / 100f;
+        
+        MovePP[moveToPerformIndex]--;
+        
         switch (LearnedMoves[moveToPerformIndex].CombatType)
         {
             case CombatType.Special:
-                targetKaiju.TakeDamage(_localSpAttack, LearnedMoves[moveToPerformIndex]);
+                targetKaiju.TakeDamage(_localSpAttack / movePower, LearnedMoves[moveToPerformIndex]);
                 break;
             case CombatType.StatusEffect:
                 //Do status effect stuff here
                 break;
             case CombatType.Physical:
             default:
-                targetKaiju.TakeDamage(_localAttack, LearnedMoves[moveToPerformIndex]);
+                targetKaiju.TakeDamage(_localAttack / movePower, LearnedMoves[moveToPerformIndex]);
                 break;
         }
     }

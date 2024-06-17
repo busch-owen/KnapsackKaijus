@@ -18,24 +18,24 @@ public class TurnHandler : MonoBehaviour
         _statusHandler = FindFirstObjectByType<RoundStatusHandler>();
     }
 
-    public void DetermineFirstKaiju(Kaiju k1, Kaiju k2, int playerMoveIndex)
+    public void DetermineFirstKaiju(Kaiju playerKaiju, EnemyKaiju enemyKaiju, int playerMoveIndex)
     {
         AttackerTwoTurn = false;
-        if (k1.LocalSpeed > k2.LocalSpeed)
+        if (playerKaiju.LocalSpeed > enemyKaiju.LocalSpeed)
         {
             _moveCastIndex = playerMoveIndex;
-            _firstKaiju = k1;
-            _secondKaiju = k2;
-            k1.Attack(k2, playerMoveIndex);
+            _firstKaiju = playerKaiju;
+            _secondKaiju = enemyKaiju;
+            playerKaiju.Attack(enemyKaiju, playerMoveIndex);
             Debug.Log("Player Went First");
         }
         else
         {
             //This is just temporary, the attack on K2 will be a random choice from the AI
             _moveCastIndex = playerMoveIndex;
-            _firstKaiju = k2;
-            _secondKaiju = k1;
-            k2.Attack(k1, playerMoveIndex);
+            _firstKaiju = enemyKaiju;
+            _secondKaiju = playerKaiju;
+            enemyKaiju.Attack(playerKaiju, playerMoveIndex);
             Debug.Log("Enemy Went First");
         }
     }
