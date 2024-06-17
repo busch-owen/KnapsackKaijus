@@ -1285,9 +1285,10 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   <Level>k__BackingField: 3
+  levelProgression: 40
+  nextXp: 0
   statLevelIncrement: 0.85
   statLevelMultiplier: 0
-  levelProgression: 0
 --- !u!1 &499051527
 GameObject:
   m_ObjectHideFlags: 0
@@ -1747,9 +1748,10 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   <Level>k__BackingField: 2
+  levelProgression: 0
+  nextXp: 0
   statLevelIncrement: 0.85
   statLevelMultiplier: 0
-  levelProgression: 0
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0

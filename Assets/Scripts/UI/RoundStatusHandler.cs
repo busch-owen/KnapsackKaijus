@@ -56,4 +56,11 @@ public class RoundStatusHandler : MonoBehaviour
         AddToDetails($"You have defeated {nameOfOpponent}!");
         StartCoroutine(DisplayDetails());
     }
+
+    public void DisplayXPGain(int xpGained)
+    {
+        StopCoroutine(DisplayDetails());
+        AddToDetails($"You gained {xpGained}XP!");
+        StartCoroutine(DisplayDetails());
+    }
 }

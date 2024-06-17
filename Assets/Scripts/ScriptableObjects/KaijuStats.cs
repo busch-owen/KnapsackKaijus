@@ -19,7 +19,9 @@ public class KaijuStats : ScriptableObject
     [field: SerializeField] public float SpAttack { get; private set; }
     [field: SerializeField] public float SpDefense { get; private set; }
     [field: SerializeField] public float Speed { get; private set; }
-    
+
+    public const int BaseXP = 15;
+
 }
 
 public enum Types

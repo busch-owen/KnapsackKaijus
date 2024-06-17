@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 public class Kaiju : MonoBehaviour
 {
@@ -19,19 +20,23 @@ public class Kaiju : MonoBehaviour
 
     [field: SerializeField] public MoveStats[] LearnedMoves { get; private set; } = new MoveStats[4];
 
-    [field: SerializeField] public int Level { get; private set; }
+    [field: SerializeField] public int Level { get; internal set; }
+    [SerializeField] internal int levelProgression;
+    protected int _localXp;
+    [SerializeField] internal int nextXp;
     [SerializeField] private float statLevelIncrement;
     [SerializeField] private float statLevelMultiplier;
-    [SerializeField] private float levelProgression;
 
     #endregion
 
     private bool _isDead;
 
     private BattleMenuController _battleMenuController;
-    private RoundStatusHandler _statusHandler;
+    protected RoundStatusHandler _statusHandler;
 
     private UnityEvent _kaijuHasDied;
+
+    protected Kaiju _targetKaiju;
 
     private void Awake()
     {
@@ -46,6 +51,8 @@ public class Kaiju : MonoBehaviour
         _localSpAttack = KaijuStats.SpAttack * statLevelMultiplier;
         _localSpDefense = KaijuStats.SpDefense * statLevelMultiplier;
         LocalSpeed = KaijuStats.Speed * statLevelMultiplier;
+        _localXp = (int)(KaijuStats.BaseXP * statLevelMultiplier);
+        nextXp = KaijuStats.BaseXP * Level;
 
         _battleMenuController = FindFirstObjectByType<BattleMenuController>();
         _statusHandler = FindFirstObjectByType<RoundStatusHandler>();
@@ -105,7 +112,7 @@ public class Kaiju : MonoBehaviour
     {
         if (_isDead) return;
         
-        _kaijuHasDied.AddListener(delegate { _statusHandler.DisplayBattleWon(targetKaiju.KaijuStats.KaijuName); });
+        _targetKaiju = targetKaiju;
         _statusHandler.AddToDetails($"{KaijuStats.KaijuName} used {LearnedMoves[moveToPerformIndex].MoveName}!");
         switch (LearnedMoves[moveToPerformIndex].CombatType)
         {
@@ -122,10 +129,10 @@ public class Kaiju : MonoBehaviour
         }
     }
 
-    private void Die()
+    protected virtual void Die()
     {
         _isDead = true;
         Destroy(gameObject);
-        _kaijuHasDied.Invoke();
+        _statusHandler.DisplayBattleWon(KaijuStats.KaijuName);
     }
 }
