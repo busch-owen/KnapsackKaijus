@@ -108,7 +108,7 @@ public class BattleMenuController : MonoBehaviour
     }
 
 
-    private void RenewPlayerStatValues()
+    public void RenewPlayerStatValues()
     {
         UpdateSpecificName(playerName, _playerKaiju.KaijuStats.KaijuName);
         UpdateLevelValue(playerLvl, _playerKaiju.Level);

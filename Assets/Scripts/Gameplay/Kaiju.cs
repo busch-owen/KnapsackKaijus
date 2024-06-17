@@ -31,7 +31,7 @@ public class Kaiju : MonoBehaviour
 
     private bool _isDead;
 
-    private BattleMenuController _battleMenuController;
+    protected BattleMenuController _battleMenuController;
     protected RoundStatusHandler _statusHandler;
 
     private UnityEvent _kaijuHasDied;

@@ -11,8 +11,11 @@ public class EnemyKaiju : Kaiju
         playerKaiju.levelProgression += xpToAdd;
         _statusHandler.DisplayXPGain(xpToAdd);
         if (playerKaiju.levelProgression < playerKaiju.nextXp) return;
+        
         var remainder = playerKaiju.levelProgression - playerKaiju.nextXp;
         playerKaiju.Level++;
+        _statusHandler.DisplayLevelUpInformation(playerKaiju, playerKaiju.Level);
+        _battleMenuController.RenewPlayerStatValues();
         playerKaiju.levelProgression = remainder;
         nextXp = KaijuStats.BaseXP * Level;
     }

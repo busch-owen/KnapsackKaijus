@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 using TMPro;
 using UnityEngine.Events;
@@ -63,4 +64,12 @@ public class RoundStatusHandler : MonoBehaviour
         AddToDetails($"You gained {xpGained}XP!");
         StartCoroutine(DisplayDetails());
     }
+
+    public void DisplayLevelUpInformation(Kaiju targetKaiju, int newLevel)
+    {
+        StopCoroutine(DisplayDetails());
+        AddToDetails($"{targetKaiju.KaijuStats.KaijuName} leveled up to level {newLevel}!");
+        StartCoroutine(DisplayDetails());
+    }
+        
 }
