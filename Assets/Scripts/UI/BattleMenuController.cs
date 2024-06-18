@@ -67,7 +67,7 @@ public class BattleMenuController : MonoBehaviour
                 //Very hacky solution for now, if I have time I would like to add an inspect panel to see the stats of your Kaiju
                 var kaijuIndex = i;
                 
-                _kaijuButtons[i].GetComponentInChildren<TMP_Text>().text = _playerKaiju.KaijuStats.KaijuName;
+                _kaijuButtons[i].GetComponentInChildren<TMP_Text>().text = _spawner.SpawnedKaiju[i].KaijuStats.KaijuName;
                 _kaijuButtons[i].onClick.AddListener(delegate{_statusHandler.AddToDetails($"Great job, {FindFirstObjectByType<PlayerKaiju>().KaijuStats.KaijuName}! Come back!");});
                 _kaijuButtons[i].onClick.AddListener(delegate{FindFirstObjectByType<PlayerKaiju>()?.gameObject.SetActive(false);});
                 _kaijuButtons[i].onClick.AddListener(delegate{_spawner.SpawnedKaiju[kaijuIndex]?.gameObject.SetActive(true);});
@@ -97,11 +97,15 @@ public class BattleMenuController : MonoBehaviour
     public void OpenSpecificMenu(GameObject menuToOpen)
     {
         menuToOpen.SetActive(true);
-        
-        GameObject buttonToTarget = menuToOpen.GetComponentInChildren<Button>().gameObject;
+        if (menuToOpen == kaijuMenu)
+        {
+            RefreshKaijuMenuStats();
+        }
+
+        var buttonToTarget = menuToOpen.GetComponentInChildren<Button>();
         if (buttonToTarget)
         {
-            _eventSystem.SetSelectedGameObject(menuToOpen.GetComponentInChildren<Button>().gameObject);
+            _eventSystem.SetSelectedGameObject(buttonToTarget.gameObject);
         }
         
         _currentMenu = menuToOpen;
@@ -125,6 +129,20 @@ public class BattleMenuController : MonoBehaviour
             {
                 _attackButtons[i].gameObject.SetActive(false);
             }
+        }
+    }
+
+    private void RefreshKaijuMenuStats()
+    {
+        for (var i = 0; i < _kaijuButtons.Length; i++)
+        {
+            if (_spawner.SpawnedKaiju[i] == null)
+            {
+                _kaijuButtons[i]?.GetComponent<KaijuButton>().RefreshStats("*DEAD*", "~", 0);
+                return;
+            }
+            _kaijuButtons[i]?.GetComponent<KaijuButton>().RefreshStats(_spawner.SpawnedKaiju[i].KaijuStats.KaijuName, _spawner.SpawnedKaiju[i].Level.ToString(), 
+                _spawner.SpawnedKaiju[i].CurrentHealth/_spawner.SpawnedKaiju[i].LocalHealth);
         }
     }
 

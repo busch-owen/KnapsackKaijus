@@ -11,8 +11,8 @@ public class Kaiju : MonoBehaviour
     
     private Types _localType;
     private Types _localWeakType;
-    private float _localHealth;
-    private float _currentHealth;
+    public float LocalHealth { get; private set; }
+    public float CurrentHealth { get; private set; }
     private float _localAttack;
     private float _localDefense;
     private float _localSpAttack;
@@ -54,8 +54,8 @@ public class Kaiju : MonoBehaviour
         
         _localType = KaijuStats.Type;
         _localWeakType = KaijuStats.WeakType;
-        _localHealth = KaijuStats.Health * statLevelMultiplier;
-        _currentHealth = _localHealth;
+        LocalHealth = KaijuStats.Health * statLevelMultiplier;
+        CurrentHealth = LocalHealth;
         _localAttack = KaijuStats.Attack * statLevelMultiplier;
         _localDefense = KaijuStats.Defense * statLevelMultiplier;
         _localSpAttack = KaijuStats.SpAttack * statLevelMultiplier;
@@ -160,24 +160,24 @@ public class Kaiju : MonoBehaviour
 
     private IEnumerator LerpHealthValue(float valueDealt, float speed)
     {
-        var newValue = _currentHealth - valueDealt;
-        newValue = Mathf.Clamp(newValue, -0.1f, _currentHealth);
+        var newValue = CurrentHealth - valueDealt;
+        newValue = Mathf.Clamp(newValue, -0.1f, CurrentHealth);
 
-        while (!Mathf.Approximately(_currentHealth, newValue))
+        while (!Mathf.Approximately(CurrentHealth, newValue))
         {
-            _currentHealth = Mathf.Lerp(_currentHealth, newValue, speed * Time.fixedDeltaTime);
+            CurrentHealth = Mathf.Lerp(CurrentHealth, newValue, speed * Time.fixedDeltaTime);
             bool isPlayer = GetComponent<PlayerKaiju>();
             
             if (isPlayer)
             {
-                _battleMenuController.UpdatePlayerHealthBar(_currentHealth, _localHealth);
+                _battleMenuController.UpdatePlayerHealthBar(CurrentHealth, LocalHealth);
             }
             else
             {
-                _battleMenuController.UpdateEnemyHealthBar(_currentHealth, _localHealth);
+                _battleMenuController.UpdateEnemyHealthBar(CurrentHealth, LocalHealth);
             }
             
-            if (_currentHealth < 0)
+            if (CurrentHealth < 0)
             {
                 _statusHandler.AddToDetails($"{KaijuStats.KaijuName} has brutally died");
                 Die();
