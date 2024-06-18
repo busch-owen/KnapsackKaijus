@@ -68,8 +68,15 @@ public class BattleMenuController : MonoBehaviour
                 var kaijuIndex = i;
                 
                 _kaijuButtons[i].GetComponentInChildren<TMP_Text>().text = _playerKaiju.KaijuStats.KaijuName;
+                _kaijuButtons[i].onClick.AddListener(delegate{_statusHandler.AddToDetails($"Great job, {FindFirstObjectByType<PlayerKaiju>().KaijuStats.KaijuName}! Come back!");});
                 _kaijuButtons[i].onClick.AddListener(delegate{FindFirstObjectByType<PlayerKaiju>()?.gameObject.SetActive(false);});
                 _kaijuButtons[i].onClick.AddListener(delegate{_spawner.SpawnedKaiju[kaijuIndex]?.gameObject.SetActive(true);});
+                _kaijuButtons[i].onClick.AddListener(delegate{_playerKaiju = FindFirstObjectByType<PlayerKaiju>(); RenewPlayerStatValues();});
+                _kaijuButtons[i].onClick.AddListener(delegate{_statusHandler.AddToDetails($"Go, {_spawner.SpawnedKaiju[kaijuIndex]?.KaijuStats.KaijuName}!");});
+                _kaijuButtons[i].onClick.AddListener(delegate{ StartCoroutine(_statusHandler.DisplayDetails());});
+                _kaijuButtons[i].onClick.AddListener(delegate{_turnHandler.ForfeitMove(_playerKaiju, _enemyKaiju);});
+                
+                
                 _kaijuButtons[i].onClick.AddListener(ReturnToMainMenu);
                 RefreshAttackButtons();
             }
@@ -111,7 +118,7 @@ public class BattleMenuController : MonoBehaviour
                 _attackButtons[i].onClick.RemoveAllListeners();
                 _attackButtons[i].GetComponentInChildren<TMP_Text>().text = _playerKaiju.LearnedMoves[i].MoveName;
                 _attackButtons[i].onClick.AddListener(delegate {_turnHandler.DetermineFirstKaiju(_playerKaiju, _enemyKaiju, moveIndex); });
-                _attackButtons[i].onClick.AddListener(delegate { StartCoroutine(_statusHandler.DisplayDetails()); });
+                _attackButtons[i].onClick.AddListener(delegate { StartCoroutine(_statusHandler.DisplayDetails());});
                 _attackButtons[i].onClick.AddListener(ReturnToMainMenu);
             }
             else

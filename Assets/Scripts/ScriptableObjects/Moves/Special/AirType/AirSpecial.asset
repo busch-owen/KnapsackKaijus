@@ -15,4 +15,6 @@ MonoBehaviour:
   <MoveName>k__BackingField: Air Special
   <MoveType>k__BackingField: 1
   <PP>k__BackingField: 15
+  <Strength>k__BackingField: 20
+  <Accuracy>k__BackingField: 100
   <CombatType>k__BackingField: 1

@@ -75,5 +75,4 @@ public class RoundStatusHandler : MonoBehaviour
         _detailsToDisplay.Clear();
         displayWindow.SetActive(false);
     }
-        
 }

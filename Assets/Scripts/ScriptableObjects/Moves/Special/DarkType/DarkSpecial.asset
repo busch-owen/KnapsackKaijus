@@ -15,4 +15,6 @@ MonoBehaviour:
   <MoveName>k__BackingField: Dark Special
   <MoveType>k__BackingField: 4
   <PP>k__BackingField: 15
+  <Strength>k__BackingField: 30
+  <Accuracy>k__BackingField: 90
   <CombatType>k__BackingField: 1
