@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 public class PlayerMover : MonoBehaviour
@@ -10,10 +9,18 @@ public class PlayerMover : MonoBehaviour
     private Vector2 _originalPos, _nextPos;
     [SerializeField] private float _moveTime = 0.2f;
 
+    private Animator _animator;
+
     private Vector2 _inputDir;
-    
+
     private void Awake()
     {
+        _animator = GetComponent<Animator>();
+    }
+
+    private void Update()
+    {
+        UpdateAnimator(_inputDir);
     }
 
     private void FixedUpdate()
@@ -61,5 +68,28 @@ public class PlayerMover : MonoBehaviour
         }
 
         return true;
+    }
+
+    void UpdateAnimator(Vector2 dir)
+    {
+        if (Mathf.Abs(dir.y) > 0f)
+        {
+            _animator.Play("MoveTree");
+            _animator.SetFloat("MoveY", dir.y);
+        }
+        else if (Mathf.Abs(dir.x) > 0f)
+        {
+            _animator.Play("MoveTree");
+            _animator.SetFloat("MoveX", dir.x);
+        }
+        else
+        {
+            if (!_isMoving)
+            {
+                _animator.Play("IdleTree");
+                _animator.SetFloat("MoveY", dir.y);
+                _animator.SetFloat("MoveX", dir.x);
+            }
+        }
     }
 }
