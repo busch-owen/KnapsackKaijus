@@ -45,8 +45,6 @@ public class RoundStatusHandler : MonoBehaviour
             yield return _waitForDuration;
         }
         ClearDetails();
-        displayText.text = "your shit broke jackass";
-        displayWindow.SetActive(false);
         if (!_turnHandler.AttackerTwoTurn)
             _firstDetailsFinished.Invoke();
     }
@@ -75,6 +73,7 @@ public class RoundStatusHandler : MonoBehaviour
     public void ClearDetails()
     {
         _detailsToDisplay.Clear();
+        displayWindow.SetActive(false);
     }
         
 }

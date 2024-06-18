@@ -104,28 +104,12 @@ public class Kaiju : MonoBehaviour
         if (movePerformed.CombatType == CombatType.Physical)
         {
             //_currentHealth -= damageToDeal / statLevelMultiplier * (_localDefense / 2.5f) * effectiveMultiplier;
-            StartCoroutine(LerpHealthValue(damageToDeal / statLevelMultiplier * (_localDefense / 2.5f) * effectiveMultiplier, effectiveMultiplier * 10f));
+            StartCoroutine(LerpHealthValue(damageToDeal / statLevelMultiplier * (_localDefense / 2.5f) * effectiveMultiplier, effectiveMultiplier));
         }
         else
         {
             //_currentHealth -= damageToDeal / statLevelMultiplier * (_localSpDefense / 2.5f) * effectiveMultiplier;
-            StartCoroutine(LerpHealthValue(damageToDeal / statLevelMultiplier * (_localSpDefense / 2.5f) * effectiveMultiplier, effectiveMultiplier * 10f));
-        }
-        
-        bool isPlayer = GetComponent<PlayerKaiju>();
-        if (isPlayer)
-        {
-            _battleMenuController.UpdatePlayerHealthBar(_currentHealth, _localHealth);
-        }
-        else
-        {
-            _battleMenuController.UpdateEnemyHealthBar(_currentHealth, _localHealth);
-        }
-
-        if (_currentHealth <= 0)
-        {
-            _statusHandler.AddToDetails($"{KaijuStats.KaijuName} has brutally died");
-            Die();
+            StartCoroutine(LerpHealthValue(damageToDeal / statLevelMultiplier * (_localSpDefense / 2.5f) * effectiveMultiplier, effectiveMultiplier));
         }
     }
 
@@ -177,11 +161,28 @@ public class Kaiju : MonoBehaviour
     private IEnumerator LerpHealthValue(float valueDealt, float speed)
     {
         var newValue = _currentHealth - valueDealt;
-        Debug.Log(newValue);
-        while (_currentHealth > newValue)
+        newValue = Mathf.Clamp(newValue, -0.1f, _currentHealth);
+
+        while (!Mathf.Approximately(_currentHealth, newValue))
         {
-            Debug.Log("Changing Value to" + _currentHealth);
             _currentHealth = Mathf.Lerp(_currentHealth, newValue, speed * Time.fixedDeltaTime);
+            bool isPlayer = GetComponent<PlayerKaiju>();
+            
+            if (isPlayer)
+            {
+                _battleMenuController.UpdatePlayerHealthBar(_currentHealth, _localHealth);
+            }
+            else
+            {
+                _battleMenuController.UpdateEnemyHealthBar(_currentHealth, _localHealth);
+            }
+            
+            if (_currentHealth < 0)
+            {
+                _statusHandler.AddToDetails($"{KaijuStats.KaijuName} has brutally died");
+                Die();
+                yield break;
+            }
             yield return _waitForFixedUpdate;
         }
     }

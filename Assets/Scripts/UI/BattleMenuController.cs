@@ -68,8 +68,8 @@ public class BattleMenuController : MonoBehaviour
                 var kaijuIndex = i;
                 
                 _kaijuButtons[i].GetComponentInChildren<TMP_Text>().text = _playerKaiju.KaijuStats.KaijuName;
-                _kaijuButtons[i].onClick.AddListener(delegate{FindFirstObjectByType<PlayerKaiju>().gameObject.SetActive(false);});
-                _kaijuButtons[i].onClick.AddListener(delegate{_spawner.SpawnedKaiju[kaijuIndex].gameObject.SetActive(true);});
+                _kaijuButtons[i].onClick.AddListener(delegate{FindFirstObjectByType<PlayerKaiju>()?.gameObject.SetActive(false);});
+                _kaijuButtons[i].onClick.AddListener(delegate{_spawner.SpawnedKaiju[kaijuIndex]?.gameObject.SetActive(true);});
                 _kaijuButtons[i].onClick.AddListener(ReturnToMainMenu);
                 RefreshAttackButtons();
             }

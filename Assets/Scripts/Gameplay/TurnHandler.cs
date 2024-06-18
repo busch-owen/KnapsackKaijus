@@ -1,5 +1,4 @@
 using System;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class TurnHandler : MonoBehaviour
@@ -42,6 +41,8 @@ public class TurnHandler : MonoBehaviour
 
     public void SecondTurn()
     {
+        _statusHandler.ClearDetails();
+        if (!_secondKaiju) return;
         AttackerTwoTurn = true;
         _secondKaiju.Attack(_firstKaiju, _moveCastIndex);
         StartCoroutine(_statusHandler.DisplayDetails());
