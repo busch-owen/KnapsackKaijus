@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 688be91af25bc8d4e98486d6d1d76a8e, type: 3}
-  m_Name: WaterPhysical
+  m_Name: FlameKick
   m_EditorClassIdentifier: 
-  <MoveName>k__BackingField: Water Physical
-  <MoveType>k__BackingField: 2
-  <PP>k__BackingField: 20
-  <Strength>k__BackingField: 0
-  <Accuracy>k__BackingField: 0
+  <MoveName>k__BackingField: Flame Kick
+  <MoveType>k__BackingField: 0
+  <PP>k__BackingField: 15
+  <Strength>k__BackingField: 60
+  <Accuracy>k__BackingField: 90
   <CombatType>k__BackingField: 0

@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 688be91af25bc8d4e98486d6d1d76a8e, type: 3}
-  m_Name: FirePhysical
+  m_Name: AquaJet
   m_EditorClassIdentifier: 
-  <MoveName>k__BackingField: Fire Physical
-  <MoveType>k__BackingField: 0
+  <MoveName>k__BackingField: Aqua Jet
+  <MoveType>k__BackingField: 2
   <PP>k__BackingField: 20
-  <Strength>k__BackingField: 0
-  <Accuracy>k__BackingField: 0
+  <Strength>k__BackingField: 40
+  <Accuracy>k__BackingField: 100
   <CombatType>k__BackingField: 0

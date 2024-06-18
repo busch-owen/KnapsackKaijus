@@ -354,14 +354,14 @@ MonoBehaviour:
   m_text: 'LV: 0'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6251f380c9adbe94b85a38e67e4f208a, type: 2}
-  m_sharedMaterial: {fileID: 7698022482673184194, guid: 6251f380c9adbe94b85a38e67e4f208a, type: 2}
+  m_sharedMaterial: {fileID: -6264813652962727289, guid: 6251f380c9adbe94b85a38e67e4f208a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281360944
-  m_fontColor: {r: 0.18823531, g: 0.38431376, b: 0.18823531, a: 1}
+    rgba: 4279187471
+  m_fontColor: {r: 0.058823533, g: 0.21960786, b: 0.058823533, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -490,14 +490,14 @@ MonoBehaviour:
   m_text: ITEMS
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6251f380c9adbe94b85a38e67e4f208a, type: 2}
-  m_sharedMaterial: {fileID: 7698022482673184194, guid: 6251f380c9adbe94b85a38e67e4f208a, type: 2}
+  m_sharedMaterial: {fileID: -6264813652962727289, guid: 6251f380c9adbe94b85a38e67e4f208a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281360944
-  m_fontColor: {r: 0.18823531, g: 0.38431376, b: 0.18823531, a: 1}
+    rgba: 4279187471
+  m_fontColor: {r: 0.058823533, g: 0.21960786, b: 0.058823533, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -710,7 +710,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &309589148
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1071,14 +1071,14 @@ MonoBehaviour:
   m_text: Fire kaiju
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6251f380c9adbe94b85a38e67e4f208a, type: 2}
-  m_sharedMaterial: {fileID: 7698022482673184194, guid: 6251f380c9adbe94b85a38e67e4f208a, type: 2}
+  m_sharedMaterial: {fileID: -6264813652962727289, guid: 6251f380c9adbe94b85a38e67e4f208a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281360944
-  m_fontColor: {r: 0.18823531, g: 0.38431376, b: 0.18823531, a: 1}
+    rgba: 4279187471
+  m_fontColor: {r: 0.058823533, g: 0.21960786, b: 0.058823533, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1147,62 +1147,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 428852582}
   m_CullTransparentMesh: 1
---- !u!1 &453341576
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 453341578}
-  - component: {fileID: 453341579}
-  m_Layer: 0
-  m_Name: PlayerKaiju
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &453341578
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 453341576}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.5, y: -2, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1723244484152823522}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &453341579
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 453341576}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 163d579282de26342abe1927a449e3a2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <KaijuStats>k__BackingField: {fileID: 11400000, guid: 580228b7543fe2f43913d6551a54c216, type: 2}
-  <LearnedMoves>k__BackingField:
-  - {fileID: 11400000, guid: 1f323ef3d5135c94b829861464f09b64, type: 2}
-  - {fileID: 11400000, guid: 4952bd298bce60a45a6ecb9714280a76, type: 2}
-  - {fileID: 11400000, guid: b3c3be87890f66644a2349d0dcd32d48, type: 2}
-  - {fileID: 11400000, guid: 8b46678b210f7ff48a8abda914a2785f, type: 2}
-  <Level>k__BackingField: 3
-  levelProgression: 40
-  nextXp: 0
-  statLevelIncrement: 0.85
-  statLevelMultiplier: 0
 --- !u!1 &499051527
 GameObject:
   m_ObjectHideFlags: 0
@@ -1338,14 +1282,14 @@ MonoBehaviour:
   m_text: TEMP MOVE
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6251f380c9adbe94b85a38e67e4f208a, type: 2}
-  m_sharedMaterial: {fileID: 7698022482673184194, guid: 6251f380c9adbe94b85a38e67e4f208a, type: 2}
+  m_sharedMaterial: {fileID: -6264813652962727289, guid: 6251f380c9adbe94b85a38e67e4f208a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4283387727
-  m_fontColor: {r: 0.30980393, g: 0.30980393, b: 0.30980393, a: 1}
+    rgba: 4279187471
+  m_fontColor: {r: 0.058823533, g: 0.21960786, b: 0.058823533, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1867,14 +1811,14 @@ MonoBehaviour:
   m_text: RUN
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6251f380c9adbe94b85a38e67e4f208a, type: 2}
-  m_sharedMaterial: {fileID: 7698022482673184194, guid: 6251f380c9adbe94b85a38e67e4f208a, type: 2}
+  m_sharedMaterial: {fileID: -6264813652962727289, guid: 6251f380c9adbe94b85a38e67e4f208a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281360944
-  m_fontColor: {r: 0.18823531, g: 0.38431376, b: 0.18823531, a: 1}
+    rgba: 4279187471
+  m_fontColor: {r: 0.058823533, g: 0.21960786, b: 0.058823533, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2003,14 +1947,14 @@ MonoBehaviour:
   m_text: 'HP:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6251f380c9adbe94b85a38e67e4f208a, type: 2}
-  m_sharedMaterial: {fileID: 7698022482673184194, guid: 6251f380c9adbe94b85a38e67e4f208a, type: 2}
+  m_sharedMaterial: {fileID: -6264813652962727289, guid: 6251f380c9adbe94b85a38e67e4f208a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281360944
-  m_fontColor: {r: 0.18823531, g: 0.38431376, b: 0.18823531, a: 1}
+    rgba: 4279187471
+  m_fontColor: {r: 0.058823533, g: 0.21960786, b: 0.058823533, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2084,6 +2028,57 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5848293709956557130, guid: 7664fad8d6e29924da71c94328080364, type: 3}
   m_PrefabInstance: {fileID: 574310664}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &859004628
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 859004630}
+  - component: {fileID: 859004629}
+  m_Layer: 0
+  m_Name: '[KaijuParty]'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &859004629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 859004628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b385c24fdc67e72448f4504d8bc580e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <KaijuInParty>k__BackingField:
+  - {fileID: 6758960550268399841, guid: 80e0bb40a604d364f8cfa531f8b23f2d, type: 3}
+  - {fileID: 6758960550268399841, guid: 80e0bb40a604d364f8cfa531f8b23f2d, type: 3}
+  - {fileID: 6758960550268399841, guid: 80e0bb40a604d364f8cfa531f8b23f2d, type: 3}
+  - {fileID: 6758960550268399841, guid: 80e0bb40a604d364f8cfa531f8b23f2d, type: 3}
+  - {fileID: 6758960550268399841, guid: 80e0bb40a604d364f8cfa531f8b23f2d, type: 3}
+  - {fileID: 6758960550268399841, guid: 80e0bb40a604d364f8cfa531f8b23f2d, type: 3}
+--- !u!4 &859004630
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 859004628}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 81.93754, y: 70.12795, z: 4.260763}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &934011957
 GameObject:
   m_ObjectHideFlags: 0
@@ -2309,14 +2304,14 @@ MonoBehaviour:
   m_text: KAIJU
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6251f380c9adbe94b85a38e67e4f208a, type: 2}
-  m_sharedMaterial: {fileID: 7698022482673184194, guid: 6251f380c9adbe94b85a38e67e4f208a, type: 2}
+  m_sharedMaterial: {fileID: -6264813652962727289, guid: 6251f380c9adbe94b85a38e67e4f208a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281360944
-  m_fontColor: {r: 0.18823531, g: 0.38431376, b: 0.18823531, a: 1}
+    rgba: 4279187471
+  m_fontColor: {r: 0.058823533, g: 0.21960786, b: 0.058823533, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2749,6 +2744,50 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &1116617960
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1116617962}
+  - component: {fileID: 1116617961}
+  m_Layer: 0
+  m_Name: '[KaijuSpawner]'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1116617961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1116617960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13d9b01198c245f429624395612ee5b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1116617962
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1116617960}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 81.93754, y: 70.12795, z: 4.260763}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1116885452
 GameObject:
   m_ObjectHideFlags: 0
@@ -2991,14 +3030,14 @@ MonoBehaviour:
   m_text: TEMP MOVE
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6251f380c9adbe94b85a38e67e4f208a, type: 2}
-  m_sharedMaterial: {fileID: 7698022482673184194, guid: 6251f380c9adbe94b85a38e67e4f208a, type: 2}
+  m_sharedMaterial: {fileID: -6264813652962727289, guid: 6251f380c9adbe94b85a38e67e4f208a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4283387727
-  m_fontColor: {r: 0.30980393, g: 0.30980393, b: 0.30980393, a: 1}
+    rgba: 4279187471
+  m_fontColor: {r: 0.058823533, g: 0.21960786, b: 0.058823533, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -3203,14 +3242,14 @@ MonoBehaviour:
   m_text: TEMP MOVE
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6251f380c9adbe94b85a38e67e4f208a, type: 2}
-  m_sharedMaterial: {fileID: 7698022482673184194, guid: 6251f380c9adbe94b85a38e67e4f208a, type: 2}
+  m_sharedMaterial: {fileID: -6264813652962727289, guid: 6251f380c9adbe94b85a38e67e4f208a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4283387727
-  m_fontColor: {r: 0.30980393, g: 0.30980393, b: 0.30980393, a: 1}
+    rgba: 4279187471
+  m_fontColor: {r: 0.058823533, g: 0.21960786, b: 0.058823533, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -3339,14 +3378,14 @@ MonoBehaviour:
   m_text: TEMP MOVE
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6251f380c9adbe94b85a38e67e4f208a, type: 2}
-  m_sharedMaterial: {fileID: 7698022482673184194, guid: 6251f380c9adbe94b85a38e67e4f208a, type: 2}
+  m_sharedMaterial: {fileID: -6264813652962727289, guid: 6251f380c9adbe94b85a38e67e4f208a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4283387727
-  m_fontColor: {r: 0.30980393, g: 0.30980393, b: 0.30980393, a: 1}
+    rgba: 4279187471
+  m_fontColor: {r: 0.058823533, g: 0.21960786, b: 0.058823533, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -3475,14 +3514,14 @@ MonoBehaviour:
   m_text: Fire kaiju
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6251f380c9adbe94b85a38e67e4f208a, type: 2}
-  m_sharedMaterial: {fileID: 7698022482673184194, guid: 6251f380c9adbe94b85a38e67e4f208a, type: 2}
+  m_sharedMaterial: {fileID: -6264813652962727289, guid: 6251f380c9adbe94b85a38e67e4f208a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281360944
-  m_fontColor: {r: 0.18823531, g: 0.38431376, b: 0.18823531, a: 1}
+    rgba: 4279187471
+  m_fontColor: {r: 0.058823533, g: 0.21960786, b: 0.058823533, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -3715,14 +3754,14 @@ MonoBehaviour:
   m_text: 'HP:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6251f380c9adbe94b85a38e67e4f208a, type: 2}
-  m_sharedMaterial: {fileID: 7698022482673184194, guid: 6251f380c9adbe94b85a38e67e4f208a, type: 2}
+  m_sharedMaterial: {fileID: -6264813652962727289, guid: 6251f380c9adbe94b85a38e67e4f208a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281360944
-  m_fontColor: {r: 0.18823531, g: 0.38431376, b: 0.18823531, a: 1}
+    rgba: 4279187471
+  m_fontColor: {r: 0.058823533, g: 0.21960786, b: 0.058823533, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -3972,14 +4011,14 @@ MonoBehaviour:
   m_text: 'LV: 0'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6251f380c9adbe94b85a38e67e4f208a, type: 2}
-  m_sharedMaterial: {fileID: 7698022482673184194, guid: 6251f380c9adbe94b85a38e67e4f208a, type: 2}
+  m_sharedMaterial: {fileID: -6264813652962727289, guid: 6251f380c9adbe94b85a38e67e4f208a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281360944
-  m_fontColor: {r: 0.18823531, g: 0.38431376, b: 0.18823531, a: 1}
+    rgba: 4279187471
+  m_fontColor: {r: 0.058823533, g: 0.21960786, b: 0.058823533, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -4438,14 +4477,14 @@ MonoBehaviour:
   m_text: SO AND SO USED FIRE SPECIAL!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6251f380c9adbe94b85a38e67e4f208a, type: 2}
-  m_sharedMaterial: {fileID: 7698022482673184194, guid: 6251f380c9adbe94b85a38e67e4f208a, type: 2}
+  m_sharedMaterial: {fileID: -6264813652962727289, guid: 6251f380c9adbe94b85a38e67e4f208a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281360944
-  m_fontColor: {r: 0.18823531, g: 0.38431376, b: 0.18823531, a: 1}
+    rgba: 4279187471
+  m_fontColor: {r: 0.058823533, g: 0.21960786, b: 0.058823533, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -4574,14 +4613,14 @@ MonoBehaviour:
   m_text: FIGHT
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6251f380c9adbe94b85a38e67e4f208a, type: 2}
-  m_sharedMaterial: {fileID: 7698022482673184194, guid: 6251f380c9adbe94b85a38e67e4f208a, type: 2}
+  m_sharedMaterial: {fileID: -6264813652962727289, guid: 6251f380c9adbe94b85a38e67e4f208a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281360944
-  m_fontColor: {r: 0.18823531, g: 0.38431376, b: 0.18823531, a: 1}
+    rgba: 4279187471
+  m_fontColor: {r: 0.058823533, g: 0.21960786, b: 0.058823533, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -4667,68 +4706,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1001 &1680299076337983294
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 453341578}
-    m_Modifications:
-    - target: {fileID: 1683538101387402084, guid: 8f212c75b2cdf744fada5a304c62e337, type: 3}
-      propertyPath: m_Name
-      value: WaterKaijuBackView
-      objectReference: {fileID: 0}
-    - target: {fileID: 6393683591672801887, guid: 8f212c75b2cdf744fada5a304c62e337, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6393683591672801887, guid: 8f212c75b2cdf744fada5a304c62e337, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6393683591672801887, guid: 8f212c75b2cdf744fada5a304c62e337, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6393683591672801887, guid: 8f212c75b2cdf744fada5a304c62e337, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6393683591672801887, guid: 8f212c75b2cdf744fada5a304c62e337, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6393683591672801887, guid: 8f212c75b2cdf744fada5a304c62e337, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6393683591672801887, guid: 8f212c75b2cdf744fada5a304c62e337, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6393683591672801887, guid: 8f212c75b2cdf744fada5a304c62e337, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6393683591672801887, guid: 8f212c75b2cdf744fada5a304c62e337, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6393683591672801887, guid: 8f212c75b2cdf744fada5a304c62e337, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 8f212c75b2cdf744fada5a304c62e337, type: 3}
---- !u!4 &1723244484152823522 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6393683591672801887, guid: 8f212c75b2cdf744fada5a304c62e337, type: 3}
-  m_PrefabInstance: {fileID: 1680299076337983294}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3713825135017633789
 Transform:
   m_ObjectHideFlags: 0
@@ -4870,6 +4847,67 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!1001 &7043472535506433563
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1265328173357311266, guid: 80e0bb40a604d364f8cfa531f8b23f2d, type: 3}
+      propertyPath: m_Name
+      value: DarkKaiju
+      objectReference: {fileID: 0}
+    - target: {fileID: 1265328173357311266, guid: 80e0bb40a604d364f8cfa531f8b23f2d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1433072867806975015, guid: 80e0bb40a604d364f8cfa531f8b23f2d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1433072867806975015, guid: 80e0bb40a604d364f8cfa531f8b23f2d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1433072867806975015, guid: 80e0bb40a604d364f8cfa531f8b23f2d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1433072867806975015, guid: 80e0bb40a604d364f8cfa531f8b23f2d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1433072867806975015, guid: 80e0bb40a604d364f8cfa531f8b23f2d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1433072867806975015, guid: 80e0bb40a604d364f8cfa531f8b23f2d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1433072867806975015, guid: 80e0bb40a604d364f8cfa531f8b23f2d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1433072867806975015, guid: 80e0bb40a604d364f8cfa531f8b23f2d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1433072867806975015, guid: 80e0bb40a604d364f8cfa531f8b23f2d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1433072867806975015, guid: 80e0bb40a604d364f8cfa531f8b23f2d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 80e0bb40a604d364f8cfa531f8b23f2d, type: 3}
 --- !u!1 &7785634138699079240
 GameObject:
   m_ObjectHideFlags: 0
@@ -4925,8 +4963,10 @@ SceneRoots:
   - {fileID: 957202457}
   - {fileID: 8473504093820864821}
   - {fileID: 3713825135017633789}
-  - {fileID: 453341578}
+  - {fileID: 7043472535506433563}
   - {fileID: 585895568}
   - {fileID: 934011959}
   - {fileID: 45085141}
   - {fileID: 1007025577}
+  - {fileID: 859004630}
+  - {fileID: 1116617962}

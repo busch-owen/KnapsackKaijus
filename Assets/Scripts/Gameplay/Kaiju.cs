@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using Random = UnityEngine.Random;
@@ -39,6 +40,12 @@ public class Kaiju : MonoBehaviour
     private UnityEvent _kaijuHasDied;
 
     protected Kaiju _targetKaiju;
+    #endregion
+    
+    #region Misc Variables
+
+    private WaitForFixedUpdate _waitForFixedUpdate;
+    
     #endregion
 
     private void Awake()
@@ -96,11 +103,13 @@ public class Kaiju : MonoBehaviour
         
         if (movePerformed.CombatType == CombatType.Physical)
         {
-            _currentHealth -= damageToDeal / statLevelMultiplier * (_localDefense / 2.5f) * effectiveMultiplier;
+            //_currentHealth -= damageToDeal / statLevelMultiplier * (_localDefense / 2.5f) * effectiveMultiplier;
+            StartCoroutine(LerpHealthValue(damageToDeal / statLevelMultiplier * (_localDefense / 2.5f) * effectiveMultiplier, effectiveMultiplier * 10f));
         }
         else
         {
-            _currentHealth -= damageToDeal / statLevelMultiplier * (_localSpDefense / 2.5f) * effectiveMultiplier;
+            //_currentHealth -= damageToDeal / statLevelMultiplier * (_localSpDefense / 2.5f) * effectiveMultiplier;
+            StartCoroutine(LerpHealthValue(damageToDeal / statLevelMultiplier * (_localSpDefense / 2.5f) * effectiveMultiplier, effectiveMultiplier * 10f));
         }
         
         bool isPlayer = GetComponent<PlayerKaiju>();
@@ -163,5 +172,17 @@ public class Kaiju : MonoBehaviour
         _isDead = true;
         Destroy(gameObject);
         _statusHandler.DisplayBattleWon(KaijuStats.KaijuName);
+    }
+
+    private IEnumerator LerpHealthValue(float valueDealt, float speed)
+    {
+        var newValue = _currentHealth - valueDealt;
+        Debug.Log(newValue);
+        while (_currentHealth > newValue)
+        {
+            Debug.Log("Changing Value to" + _currentHealth);
+            _currentHealth = Mathf.Lerp(_currentHealth, newValue, speed * Time.fixedDeltaTime);
+            yield return _waitForFixedUpdate;
+        }
     }
 }
