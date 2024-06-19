@@ -37,6 +37,7 @@ public class Kaiju : MonoBehaviour
     protected BattleMenuController _battleMenuController;
     protected RoundStatusHandler _statusHandler;
     private KaijuSpawner _spawner;
+    private TurnHandler _turnHandler;
 
     private UnityEvent _kaijuHasDied;
 
@@ -195,5 +196,6 @@ public class Kaiju : MonoBehaviour
             }
             yield return _waitForFixedUpdate;
         }
+        _statusHandler.InvokeTurnFinished();
     }
 }

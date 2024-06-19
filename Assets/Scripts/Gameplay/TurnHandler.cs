@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class TurnHandler : MonoBehaviour
@@ -27,13 +26,31 @@ public class TurnHandler : MonoBehaviour
             _secondKaiju = enemyKaiju;
             playerKaiju.Attack(enemyKaiju, playerMoveIndex);
         }
-        else
+        else if(enemyKaiju.LocalHealth > playerKaiju.LocalSpeed)
         {
-            //This is just temporary, the attack on K2 will be a random choice from the AI
             _moveCastIndex = playerMoveIndex;
             _firstKaiju = enemyKaiju;
             _secondKaiju = playerKaiju;
             enemyKaiju.Attack(playerKaiju, playerMoveIndex);
+        }
+        else
+        {
+            var whoGoes = Random.Range(0, 2);
+            switch (whoGoes)
+            {
+                case 0:
+                    _moveCastIndex = playerMoveIndex;
+                    _firstKaiju = playerKaiju;
+                    _secondKaiju = enemyKaiju;
+                    playerKaiju.Attack(enemyKaiju, playerMoveIndex);
+                    break;
+                case 1:
+                    _moveCastIndex = playerMoveIndex;
+                    _firstKaiju = enemyKaiju;
+                    _secondKaiju = playerKaiju;
+                    enemyKaiju.Attack(playerKaiju, playerMoveIndex);
+                    break;
+            }
         }
     }
 

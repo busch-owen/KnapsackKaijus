@@ -14,5 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <MoveName>k__BackingField: Fire Special
   <MoveType>k__BackingField: 0
-  <PP>k__BackingField: 15
+  <PP>k__BackingField: 10
+  <Strength>k__BackingField: 75
+  <Accuracy>k__BackingField: 85
   <CombatType>k__BackingField: 1

@@ -45,8 +45,7 @@ public class RoundStatusHandler : MonoBehaviour
             yield return _waitForDuration;
         }
         ClearDetails();
-        if (!_turnHandler.AttackerTwoTurn)
-            _firstDetailsFinished.Invoke();
+        InvokeTurnFinished();
     }
 
     public void DisplayBattleWon(string nameOfOpponent)
@@ -70,9 +69,15 @@ public class RoundStatusHandler : MonoBehaviour
         StartCoroutine(DisplayDetails());
     }
 
+    public void InvokeTurnFinished()
+    {
+        if (!_turnHandler.AttackerTwoTurn)
+            _firstDetailsFinished.Invoke();
+    }
+
     public void ClearDetails()
     {
-        DetailsToDisplay.Clear();
         displayWindow.SetActive(false);
+        DetailsToDisplay.Clear();
     }
 }

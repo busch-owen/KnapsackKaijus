@@ -2884,63 +2884,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!1001 &574310664
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 585895568}
-    m_Modifications:
-    - target: {fileID: 5848293709956557130, guid: 7664fad8d6e29924da71c94328080364, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5848293709956557130, guid: 7664fad8d6e29924da71c94328080364, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5848293709956557130, guid: 7664fad8d6e29924da71c94328080364, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5848293709956557130, guid: 7664fad8d6e29924da71c94328080364, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5848293709956557130, guid: 7664fad8d6e29924da71c94328080364, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5848293709956557130, guid: 7664fad8d6e29924da71c94328080364, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5848293709956557130, guid: 7664fad8d6e29924da71c94328080364, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5848293709956557130, guid: 7664fad8d6e29924da71c94328080364, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5848293709956557130, guid: 7664fad8d6e29924da71c94328080364, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5848293709956557130, guid: 7664fad8d6e29924da71c94328080364, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6419232352963115997, guid: 7664fad8d6e29924da71c94328080364, type: 3}
-      propertyPath: m_Name
-      value: DarkKaijuTile
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 7664fad8d6e29924da71c94328080364, type: 3}
 --- !u!1 &584138272
 GameObject:
   m_ObjectHideFlags: 0
@@ -3084,62 +3027,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 585381237}
   m_CullTransparentMesh: 1
---- !u!1 &585895567
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 585895568}
-  - component: {fileID: 585895569}
-  m_Layer: 0
-  m_Name: EnemyKaiju
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &585895568
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 585895567}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.5, y: 3.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 806786068}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &585895569
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 585895567}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 031e30df51e17784dba5646ec154a1ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <KaijuStats>k__BackingField: {fileID: 11400000, guid: 9b9dc21565d9cde4f873d6ce886931a8, type: 2}
-  <LearnedMoves>k__BackingField:
-  - {fileID: 11400000, guid: 527893e02994a014a9106e3bddd103cc, type: 2}
-  - {fileID: 11400000, guid: b3c3be87890f66644a2349d0dcd32d48, type: 2}
-  - {fileID: 11400000, guid: 8b46678b210f7ff48a8abda914a2785f, type: 2}
-  - {fileID: 11400000, guid: b3c3be87890f66644a2349d0dcd32d48, type: 2}
-  <Level>k__BackingField: 2
-  levelProgression: 0
-  nextXp: 0
-  statLevelIncrement: 0.85
-  statLevelMultiplier: 0
 --- !u!1 &587935918
 GameObject:
   m_ObjectHideFlags: 0
@@ -4328,11 +4215,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 806726258}
   m_CullTransparentMesh: 1
---- !u!4 &806786068 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5848293709956557130, guid: 7664fad8d6e29924da71c94328080364, type: 3}
-  m_PrefabInstance: {fileID: 574310664}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &829840628
 GameObject:
   m_ObjectHideFlags: 0
@@ -4566,12 +4448,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <KaijuInParty>k__BackingField:
-  - {fileID: 6758960550268399841, guid: 80e0bb40a604d364f8cfa531f8b23f2d, type: 3}
-  - {fileID: 6758960550268399841, guid: 80e0bb40a604d364f8cfa531f8b23f2d, type: 3}
-  - {fileID: 6758960550268399841, guid: 80e0bb40a604d364f8cfa531f8b23f2d, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 6758960550268399841, guid: ddabdc5c461272140ae41e456737b50a, type: 3}
+  - {fileID: 6758960550268399841, guid: 881fd7c10ad414d459243134965e2515, type: 3}
+  - {fileID: 6758960550268399841, guid: 7e6d667748a3cc641a801c5e1ab61a15, type: 3}
+  - {fileID: 6758960550268399841, guid: cb17d8a513a343449ad32a68cb57855b, type: 3}
+  - {fileID: 6758960550268399841, guid: 950666aa5b2433e4c9287ddc73ad098c, type: 3}
+  - {fileID: 6758960550268399841, guid: ddabdc5c461272140ae41e456737b50a, type: 3}
 --- !u!4 &859004630
 Transform:
   m_ObjectHideFlags: 0
@@ -9588,6 +9470,63 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &4793472595158698100
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5181579303557093581, guid: 576701cd59b933c4ca19fe0d48a577d6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5181579303557093581, guid: 576701cd59b933c4ca19fe0d48a577d6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.52
+      objectReference: {fileID: 0}
+    - target: {fileID: 5181579303557093581, guid: 576701cd59b933c4ca19fe0d48a577d6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5181579303557093581, guid: 576701cd59b933c4ca19fe0d48a577d6, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5181579303557093581, guid: 576701cd59b933c4ca19fe0d48a577d6, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5181579303557093581, guid: 576701cd59b933c4ca19fe0d48a577d6, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5181579303557093581, guid: 576701cd59b933c4ca19fe0d48a577d6, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5181579303557093581, guid: 576701cd59b933c4ca19fe0d48a577d6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5181579303557093581, guid: 576701cd59b933c4ca19fe0d48a577d6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5181579303557093581, guid: 576701cd59b933c4ca19fe0d48a577d6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8013255329664874713, guid: 576701cd59b933c4ca19fe0d48a577d6, type: 3}
+      propertyPath: m_Name
+      value: EnemyKaiju
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 576701cd59b933c4ca19fe0d48a577d6, type: 3}
 --- !u!114 &5275928036833017538
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9694,11 +9633,11 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.03
   far clip plane: 1000
   field of view: 60
-  orthographic: 0
-  orthographic size: 5
+  orthographic: 1
+  orthographic size: 5.79
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -9769,7 +9708,7 @@ SceneRoots:
   - {fileID: 957202457}
   - {fileID: 8473504093820864821}
   - {fileID: 3713825135017633789}
-  - {fileID: 585895568}
+  - {fileID: 4793472595158698100}
   - {fileID: 934011959}
   - {fileID: 45085141}
   - {fileID: 1007025577}
