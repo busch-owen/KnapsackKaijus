@@ -2,7 +2,13 @@ using UnityEngine;
 
 public class EnemyKaiju : Kaiju
 {
-
+    private EnemyKaijuSwap _kaijuSwap;
+    
+    private void OnEnable()
+    {
+        _battleMenuController.UpdateEnemyHealthBar(CurrentHealth, LocalHealth);
+    }
+    
     protected override void TakeDamage(float damageToDeal, MoveStats movePerformed)
     {
         _targetKaiju = FindFirstObjectByType<PlayerKaiju>();
@@ -18,31 +24,10 @@ public class EnemyKaiju : Kaiju
     protected override void Die()
     {
         AddToPlayerXpProgression(_targetKaiju, _localXp);
+        _kaijuSwap ??= FindFirstObjectByType<EnemyKaijuSwap>();
         
         base.Die();
-        
-        //Check if there is another kaiju in the enemy's party, if so, swap it, if not, end the battle
-        var enemyParty = FindFirstObjectByType<EnemyKaijuParty>();
-        var spawnedEnemyKaiju = FindFirstObjectByType<EnemyKaijuSpawner>();
-        
-        foreach (var kaiju in spawnedEnemyKaiju.SpawnedKaiju)
-        {
-            if (!kaiju) continue;
-            if (kaiju.IsDead) continue;
-            
-            if (enemyParty.KaijuInParty.Count <= 1) continue;
-                
-            var randomKaijuToSendOut = Random.Range(0, enemyParty.KaijuInParty.Count);
-            while (spawnedEnemyKaiju.SpawnedKaiju[randomKaijuToSendOut].IsDead)
-            {
-                randomKaijuToSendOut = Random.Range(0, enemyParty.KaijuInParty.Count);
-            }
-
-            if (spawnedEnemyKaiju.SpawnedKaiju[randomKaijuToSendOut].IsDead) continue;
-                
-            spawnedEnemyKaiju.SpawnedKaiju[randomKaijuToSendOut].gameObject.SetActive(true);
-        }
-        _battleMenuController.RenewEnemyStatValues();
+        _kaijuSwap.SwapInRandomKaiju();
     }
     
     private void AddToPlayerXpProgression(Kaiju playerKaiju, int xpToAdd)
