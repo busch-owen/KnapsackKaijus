@@ -3,12 +3,13 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
-    private PlayerMover _playerMover;
+    private PlayerController _playerMover;
     private InputMaster _input;
     
     private void Awake()
     {
-        _playerMover = GetComponent<PlayerMover>();
+        _playerMover = GetComponent<PlayerController>();
+        // GameManager.Instance.PlayerInputState += OnPlayerInputStateChanged;
     }
 
     private void OnEnable()
@@ -20,9 +21,13 @@ public class InputManager : MonoBehaviour
             {
                 _input.Player.Move.started += ctx => _playerMover.ProcessMovement(ctx.ReadValue<Vector2>());
                 _input.Player.Move.canceled += ctx => _playerMover.ProcessMovement(ctx.ReadValue<Vector2>());
+                _input.Player.Start.performed += ctx => GameManager.Instance.PlayerInputState += OnPlayerInputStateChanged;
+            }
+
+            if (GameManager.Instance.IsPlayerInputDisabled)
+            {
             }
         }
-        GameManager.Instance.PlayerInputState += OnPlayerInputStateChanged;
         _input.Enable();
     }
 

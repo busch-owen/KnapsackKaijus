@@ -8,7 +8,6 @@ public class MenuListener : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
-        UIManager.Instance.OnMenuOpen += HandleMenu;
     }
 
     private void Start() { _overWorldMenu.SetActive(false); }

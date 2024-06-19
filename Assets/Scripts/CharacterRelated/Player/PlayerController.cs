@@ -20,7 +20,8 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        UpdateAnimator(_inputDir);
+        if (!_isMoving)
+            UpdateAnimator(_inputDir);
     }
 
     private void FixedUpdate()

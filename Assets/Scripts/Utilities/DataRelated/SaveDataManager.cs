@@ -2,13 +2,21 @@ using System;
 using UnityEngine;
 using BayatGames.SaveGameFree;
 
-public class SaveDataManager : Singleton<SaveDataManager>
+public class SaveDataManager : MonoBehaviour
 {
+    [SerializeField] private bool saveToggle = false;
+    [SerializeField] private int testNumber; 
     private PlayerData playerParty;
-    
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
     void Start()
     {
-        
+        testNumber = SaveGame.Load<int>("testNumber");
+    }
+    void Update()
+    {
+        if (saveToggle == true)
+        {
+            SaveGame.Save<int>("testNumber", testNumber);
+        }
     }
 }
