@@ -18,6 +18,28 @@ public class EnemyKaiju : Kaiju
     protected override void Die()
     {
         AddToPlayerXpProgression(_targetKaiju, _localXp);
+        
+        //Check if there is another kaiju in the enemy's party, if so, swap it, if not, end the battle
+        var enemyParty = FindFirstObjectByType<EnemyKaijuParty>();
+        var spawnedEnemyKaiju = FindFirstObjectByType<EnemyKaijuSpawner>();
+        if (enemyParty.KaijuInParty.Count > 1)
+        {
+            var randomKaijuToSendOut = Random.Range(0, enemyParty.KaijuInParty.Count);
+            while (!spawnedEnemyKaiju.SpawnedKaiju[randomKaijuToSendOut])
+            {
+                randomKaijuToSendOut = Random.Range(0, enemyParty.KaijuInParty.Count);
+            }
+            
+            if (!spawnedEnemyKaiju.SpawnedKaiju[randomKaijuToSendOut].IsDead)
+            {
+                spawnedEnemyKaiju.SpawnedKaiju[randomKaijuToSendOut].gameObject.SetActive(true);
+            }
+            
+            
+        }
+        
+        //_statusHandler.DisplayBattleWon(KaijuStats.KaijuName);
+        
         base.Die();
     }
     

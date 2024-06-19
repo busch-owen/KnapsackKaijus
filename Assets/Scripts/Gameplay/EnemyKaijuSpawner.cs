@@ -1,14 +1,14 @@
 using UnityEngine;
 
-public class KaijuSpawner : MonoBehaviour
+public class EnemyKaijuSpawner : MonoBehaviour
 {
-    private KaijuParty _kaijuParty;
+    private EnemyKaijuParty _kaijuParty;
 
     public Kaiju[] SpawnedKaiju { get; private set; } = new Kaiju[6];
 
     private void Awake()
     {
-        _kaijuParty = FindFirstObjectByType<KaijuParty>();
+        _kaijuParty = FindFirstObjectByType<EnemyKaijuParty>();
 
         for (var i = 0; i < _kaijuParty.KaijuInParty.Count; i++)
         {
@@ -26,6 +26,4 @@ public class KaijuSpawner : MonoBehaviour
             }
         }
     }
-    
-    
 }

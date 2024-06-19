@@ -19,14 +19,14 @@ public class TurnHandler : MonoBehaviour
     public void DetermineFirstKaiju(Kaiju playerKaiju, EnemyKaiju enemyKaiju, int playerMoveIndex)
     {
         AttackerTwoTurn = false;
-        if (playerKaiju.LocalSpeed > enemyKaiju.LocalSpeed)
+        if (playerKaiju.LocalSpeed > enemyKaiju.LocalSpeed) // Player's move
         {
             _moveCastIndex = playerMoveIndex;
             _firstKaiju = playerKaiju;
             _secondKaiju = enemyKaiju;
             playerKaiju.Attack(enemyKaiju, playerMoveIndex);
         }
-        else if(enemyKaiju.LocalHealth > playerKaiju.LocalSpeed)
+        else if(enemyKaiju.LocalHealth > playerKaiju.LocalSpeed) // Enemy's move
         {
             _moveCastIndex = playerMoveIndex;
             _firstKaiju = enemyKaiju;
@@ -38,13 +38,13 @@ public class TurnHandler : MonoBehaviour
             var whoGoes = Random.Range(0, 2);
             switch (whoGoes)
             {
-                case 0:
+                case 0: // Player's move
                     _moveCastIndex = playerMoveIndex;
                     _firstKaiju = playerKaiju;
                     _secondKaiju = enemyKaiju;
                     playerKaiju.Attack(enemyKaiju, playerMoveIndex);
                     break;
-                case 1:
+                case 1: // Enemy's move
                     _moveCastIndex = playerMoveIndex;
                     _firstKaiju = enemyKaiju;
                     _secondKaiju = playerKaiju;
