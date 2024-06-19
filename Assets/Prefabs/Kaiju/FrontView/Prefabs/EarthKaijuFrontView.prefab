@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 031e30df51e17784dba5646ec154a1ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <KaijuStats>k__BackingField: {fileID: 11400000, guid: 76690d098a01db94ba035de5d94b328a, type: 2}
+  <KaijuStats>k__BackingField: {fileID: 11400000, guid: 3762c383eb325a749a66c508d48f450b, type: 2}
   <LearnedMoves>k__BackingField:
   - {fileID: 11400000, guid: 04a9e5e1a80b70245a551cfb098674f0, type: 2}
   - {fileID: 11400000, guid: f830bc7888da1ec46a4c6c4ce1fe2100, type: 2}

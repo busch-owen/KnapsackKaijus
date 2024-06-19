@@ -27,27 +27,22 @@ public class EnemyKaiju : Kaiju
         
         foreach (var kaiju in spawnedEnemyKaiju.SpawnedKaiju)
         {
-            if (!kaiju.IsDead)
-            {
-                if (enemyParty.KaijuInParty.Count <= 1) continue;
+            if (!kaiju) continue;
+            if (kaiju.IsDead) continue;
+            
+            if (enemyParty.KaijuInParty.Count <= 1) continue;
                 
-                var randomKaijuToSendOut = Random.Range(0, enemyParty.KaijuInParty.Count);
-                while (spawnedEnemyKaiju.SpawnedKaiju[randomKaijuToSendOut].IsDead)
-                {
-                    randomKaijuToSendOut = Random.Range(0, enemyParty.KaijuInParty.Count);
-                }
+            var randomKaijuToSendOut = Random.Range(0, enemyParty.KaijuInParty.Count);
+            while (spawnedEnemyKaiju.SpawnedKaiju[randomKaijuToSendOut].IsDead)
+            {
+                randomKaijuToSendOut = Random.Range(0, enemyParty.KaijuInParty.Count);
+            }
 
-                if (spawnedEnemyKaiju.SpawnedKaiju[randomKaijuToSendOut].IsDead) continue;
+            if (spawnedEnemyKaiju.SpawnedKaiju[randomKaijuToSendOut].IsDead) continue;
                 
-                spawnedEnemyKaiju.SpawnedKaiju[randomKaijuToSendOut].gameObject.SetActive(true);
-                _battleMenuController.RenewEnemyStatValues();
-            }
-            else
-            {
-                _statusHandler.DisplayBattleWon(KaijuStats.KaijuName);
-            }
+            spawnedEnemyKaiju.SpawnedKaiju[randomKaijuToSendOut].gameObject.SetActive(true);
         }
-        
+        _battleMenuController.RenewEnemyStatValues();
     }
     
     private void AddToPlayerXpProgression(Kaiju playerKaiju, int xpToAdd)

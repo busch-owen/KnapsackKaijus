@@ -96,7 +96,7 @@ public class BattleMenuController : MonoBehaviour
                 var moveIndex = i;
                 _attackButtons[i].onClick.RemoveAllListeners();
                 _attackButtons[i].GetComponentInChildren<TMP_Text>().text = _playerKaiju.LearnedMoves[i].MoveName;
-                _attackButtons[i].onClick.AddListener(delegate {_enemyKaiju = FindFirstObjectByType<EnemyKaiju>(); _turnHandler.DetermineFirstKaiju(_playerKaiju, _enemyKaiju, moveIndex); });
+                _attackButtons[i].onClick.AddListener(delegate { _turnHandler.DetermineFirstKaiju(_playerKaiju, _enemyKaiju, moveIndex); RenewEnemyStatValues();});
                 _attackButtons[i].onClick.AddListener(delegate { StartCoroutine(_statusHandler.DisplayDetails());});
                 _attackButtons[i].onClick.AddListener(ReturnToMainMenu);
             }
@@ -120,7 +120,7 @@ public class BattleMenuController : MonoBehaviour
                 _kaijuButtons[i].onClick.AddListener(delegate{_statusHandler.AddToDetails($"Great job, {FindFirstObjectByType<PlayerKaiju>()?.KaijuStats.KaijuName}! Come back!"); });
                 _kaijuButtons[i].onClick.AddListener(delegate{FindFirstObjectByType<PlayerKaiju>()?.gameObject.SetActive(false);});
                 _kaijuButtons[i].onClick.AddListener(delegate{_spawner.SpawnedKaiju[kaijuIndex]?.gameObject.SetActive(true);});
-                _kaijuButtons[i].onClick.AddListener(delegate{_playerKaiju = FindFirstObjectByType<PlayerKaiju>(); RenewPlayerStatValues(); RefreshAttackButtons();});
+                _kaijuButtons[i].onClick.AddListener(delegate{RenewPlayerStatValues(); RefreshAttackButtons();});
                 _kaijuButtons[i].onClick.AddListener(delegate{_statusHandler.AddToDetails($"Go, {_spawner.SpawnedKaiju[kaijuIndex]?.KaijuStats.KaijuName}!");});
                 _kaijuButtons[i].onClick.AddListener(delegate{ StartCoroutine(_statusHandler.DisplayDetails());});
                 _kaijuButtons[i].onClick.AddListener(delegate{_turnHandler.ForfeitMove(_playerKaiju, _enemyKaiju);});
@@ -177,11 +177,15 @@ public class BattleMenuController : MonoBehaviour
 
     public void RenewPlayerStatValues()
     {
+        _playerKaiju = FindFirstObjectByType<PlayerKaiju>();
+        if (!_playerKaiju) return;
         UpdateSpecificName(playerName, _playerKaiju.KaijuStats.KaijuName);
         UpdateLevelValue(playerLvl, _playerKaiju.Level);
     }
     public void RenewEnemyStatValues()
     {
+        _enemyKaiju = FindFirstObjectByType<EnemyKaiju>();
+        if (!_enemyKaiju) return;
         UpdateSpecificName(enemyName, _enemyKaiju.KaijuStats.KaijuName);
         UpdateLevelValue(enemyLvl, _enemyKaiju.Level);
     }
