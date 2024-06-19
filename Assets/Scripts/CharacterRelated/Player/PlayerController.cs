@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMover : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     private bool _isMoving;
     private Vector2 _originalPos, _nextPos;
@@ -62,7 +62,7 @@ public class PlayerMover : MonoBehaviour
     {
         Vector2 castSize = new Vector2(0.5f, 0.5f);
         Vector2 castDir = _inputDir;
-        if (Physics2D.BoxCast(transform.position, castSize, 0f, castDir, 0.25f, LayerMask.GetMask("Obstacle")))
+        if (Physics2D.BoxCast(transform.position, castSize, 0f, castDir, 0.5f, LayerMask.GetMask("Obstacle")))
         {
             return false;
         }
