@@ -106,12 +106,12 @@ public class Kaiju : MonoBehaviour
         if (movePerformed.CombatType == CombatType.Physical)
         {
             //_currentHealth -= damageToDeal / statLevelMultiplier * (_localDefense / 2.5f) * effectiveMultiplier;
-            StartCoroutine(LerpHealthValue(damageToDeal / statLevelMultiplier * (_localDefense / 2.5f) * effectiveMultiplier, effectiveMultiplier));
+            StartCoroutine(LerpHealthValue(damageToDeal / statLevelMultiplier * (_localDefense / 2.5f) * effectiveMultiplier, effectiveMultiplier * 2));
         }
         else
         {
             //_currentHealth -= damageToDeal / statLevelMultiplier * (_localSpDefense / 2.5f) * effectiveMultiplier;
-            StartCoroutine(LerpHealthValue(damageToDeal / statLevelMultiplier * (_localSpDefense / 2.5f) * effectiveMultiplier, effectiveMultiplier));
+            StartCoroutine(LerpHealthValue(damageToDeal / statLevelMultiplier * (_localSpDefense / 2.5f) * effectiveMultiplier, effectiveMultiplier * 2));
         }
     }
 
@@ -157,7 +157,15 @@ public class Kaiju : MonoBehaviour
     {
         IsDead = true;
         gameObject.SetActive(false);
-        _statusHandler.DisplayBattleWon(KaijuStats.KaijuName);
+        if (!GetComponent<PlayerKaiju>())
+        {
+            //Check if there is another kaiju in the enemy's party, if so, swap it, if not, end the battle
+            _statusHandler.DisplayBattleWon(KaijuStats.KaijuName);
+        }
+        else
+        {
+            //Allow player to swap a new Kaiju into battle so long as there is another Kaiju to swap in
+        }
     }
 
     private IEnumerator LerpHealthValue(float valueDealt, float speed)
@@ -167,7 +175,7 @@ public class Kaiju : MonoBehaviour
 
         while (!Mathf.Approximately(CurrentHealth, newValue))
         {
-            CurrentHealth = Mathf.Lerp(CurrentHealth, newValue, speed * Time.fixedDeltaTime);
+            CurrentHealth = Mathf.MoveTowards(CurrentHealth, newValue, speed * Time.fixedDeltaTime);
             bool isPlayer = GetComponent<PlayerKaiju>();
             
             if (isPlayer)

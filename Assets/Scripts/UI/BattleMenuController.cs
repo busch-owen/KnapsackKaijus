@@ -120,13 +120,12 @@ public class BattleMenuController : MonoBehaviour
                 _kaijuButtons[i].onClick.AddListener(delegate{_statusHandler.AddToDetails($"Great job, {FindFirstObjectByType<PlayerKaiju>()?.KaijuStats.KaijuName}! Come back!"); });
                 _kaijuButtons[i].onClick.AddListener(delegate{FindFirstObjectByType<PlayerKaiju>()?.gameObject.SetActive(false);});
                 _kaijuButtons[i].onClick.AddListener(delegate{_spawner.SpawnedKaiju[kaijuIndex]?.gameObject.SetActive(true); });
-                _kaijuButtons[i].onClick.AddListener(delegate{_playerKaiju = FindFirstObjectByType<PlayerKaiju>(); RenewPlayerStatValues();});
+                _kaijuButtons[i].onClick.AddListener(delegate{_playerKaiju = FindFirstObjectByType<PlayerKaiju>(); RenewPlayerStatValues(); RefreshAttackButtons();});
                 _kaijuButtons[i].onClick.AddListener(delegate{_statusHandler.AddToDetails($"Go, {_spawner.SpawnedKaiju[kaijuIndex]?.KaijuStats.KaijuName}!");});
                 _kaijuButtons[i].onClick.AddListener(delegate{ StartCoroutine(_statusHandler.DisplayDetails());});
                 _kaijuButtons[i].onClick.AddListener(delegate{_turnHandler.ForfeitMove(_playerKaiju, _enemyKaiju);});
                 
                 _kaijuButtons[i].onClick.AddListener(ReturnToMainMenu);
-                RefreshAttackButtons();
             }
             else
             {
