@@ -26,7 +26,6 @@ public class TurnHandler : MonoBehaviour
             _firstKaiju = playerKaiju;
             _secondKaiju = enemyKaiju;
             playerKaiju.Attack(enemyKaiju, playerMoveIndex);
-            Debug.Log("Player Went First");
         }
         else
         {
@@ -35,7 +34,6 @@ public class TurnHandler : MonoBehaviour
             _firstKaiju = enemyKaiju;
             _secondKaiju = playerKaiju;
             enemyKaiju.Attack(playerKaiju, playerMoveIndex);
-            Debug.Log("Enemy Went First");
         }
     }
 
@@ -44,7 +42,6 @@ public class TurnHandler : MonoBehaviour
         AttackerTwoTurn = false;
         _firstKaiju = playerKaiju;
         _secondKaiju = enemyKaiju;
-        Debug.Log("Turn forfeit, enemy goes next");
     }
 
 
@@ -55,6 +52,5 @@ public class TurnHandler : MonoBehaviour
         AttackerTwoTurn = true;
         _secondKaiju.Attack(_firstKaiju, _moveCastIndex);
         StartCoroutine(_statusHandler.DisplayDetails());
-        Debug.Log("Second attacker now attacking");
     }
 }

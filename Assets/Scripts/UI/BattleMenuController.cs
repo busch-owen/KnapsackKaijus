@@ -60,32 +60,7 @@ public class BattleMenuController : MonoBehaviour
         RenewEnemyStatValues();
         RenewPlayerStatValues();
 
-        for (var i = 0; i < _kaijuButtons.Length; i++)
-        {
-            if (_spawner.SpawnedKaiju[i] != null)
-            {
-                //Very hacky solution for now, if I have time I would like to add an inspect panel to see the stats of your Kaiju
-                var kaijuIndex = i;
-                
-                _kaijuButtons[i].GetComponentInChildren<TMP_Text>().text = _spawner.SpawnedKaiju[i].KaijuStats.KaijuName;
-                _kaijuButtons[i].onClick.AddListener(delegate{_statusHandler.AddToDetails($"Great job, {FindFirstObjectByType<PlayerKaiju>().KaijuStats.KaijuName}! Come back!");});
-                _kaijuButtons[i].onClick.AddListener(delegate{FindFirstObjectByType<PlayerKaiju>()?.gameObject.SetActive(false);});
-                _kaijuButtons[i].onClick.AddListener(delegate{_spawner.SpawnedKaiju[kaijuIndex]?.gameObject.SetActive(true);});
-                _kaijuButtons[i].onClick.AddListener(delegate{_playerKaiju = FindFirstObjectByType<PlayerKaiju>(); RenewPlayerStatValues();});
-                _kaijuButtons[i].onClick.AddListener(delegate{_statusHandler.AddToDetails($"Go, {_spawner.SpawnedKaiju[kaijuIndex]?.KaijuStats.KaijuName}!");});
-                _kaijuButtons[i].onClick.AddListener(delegate{ StartCoroutine(_statusHandler.DisplayDetails());});
-                _kaijuButtons[i].onClick.AddListener(delegate{_turnHandler.ForfeitMove(_playerKaiju, _enemyKaiju);});
-                
-                
-                _kaijuButtons[i].onClick.AddListener(ReturnToMainMenu);
-                RefreshAttackButtons();
-            }
-            else
-            {
-                _kaijuButtons[i].gameObject.SetActive(false);
-            }
-        }
-        
+        RefreshKaijuButtons();
         RefreshAttackButtons();
     }
 
@@ -132,17 +107,49 @@ public class BattleMenuController : MonoBehaviour
         }
     }
 
+    private void RefreshKaijuButtons()
+    {
+        for (var i = 0; i < _kaijuButtons.Length; i++)
+        {
+            if (_spawner.SpawnedKaiju[i] != null)
+            {
+                //Very hacky solution for now, if I have time I would like to add an inspect panel to see the stats of your Kaiju
+                var kaijuIndex = i;
+                
+                _kaijuButtons[i].GetComponentInChildren<TMP_Text>().text = _spawner.SpawnedKaiju[i].KaijuStats.KaijuName;
+                _kaijuButtons[i].onClick.AddListener(delegate{_statusHandler.AddToDetails($"Great job, {FindFirstObjectByType<PlayerKaiju>()?.KaijuStats.KaijuName}! Come back!"); });
+                _kaijuButtons[i].onClick.AddListener(delegate{FindFirstObjectByType<PlayerKaiju>()?.gameObject.SetActive(false);});
+                _kaijuButtons[i].onClick.AddListener(delegate{_spawner.SpawnedKaiju[kaijuIndex]?.gameObject.SetActive(true); });
+                _kaijuButtons[i].onClick.AddListener(delegate{_playerKaiju = FindFirstObjectByType<PlayerKaiju>(); RenewPlayerStatValues();});
+                _kaijuButtons[i].onClick.AddListener(delegate{_statusHandler.AddToDetails($"Go, {_spawner.SpawnedKaiju[kaijuIndex]?.KaijuStats.KaijuName}!");});
+                _kaijuButtons[i].onClick.AddListener(delegate{ StartCoroutine(_statusHandler.DisplayDetails());});
+                _kaijuButtons[i].onClick.AddListener(delegate{_turnHandler.ForfeitMove(_playerKaiju, _enemyKaiju);});
+                
+                _kaijuButtons[i].onClick.AddListener(ReturnToMainMenu);
+                RefreshAttackButtons();
+            }
+            else
+            {
+                _kaijuButtons[i].gameObject.SetActive(false);
+            }
+        }
+    }
+
     private void RefreshKaijuMenuStats()
     {
         for (var i = 0; i < _kaijuButtons.Length; i++)
         {
-            if (_spawner.SpawnedKaiju[i] == null)
+            if (!_spawner.SpawnedKaiju[i]) continue;
+            if (_spawner.SpawnedKaiju[i].IsDead)
             {
-                _kaijuButtons[i]?.GetComponent<KaijuButton>().RefreshStats("*DEAD*", "~", 0);
-                return;
+                _kaijuButtons[i].GetComponent<KaijuButton>().RefreshStats("*DEAD*", "~", 0);
+                _kaijuButtons[i].onClick.RemoveAllListeners();
             }
-            _kaijuButtons[i]?.GetComponent<KaijuButton>().RefreshStats(_spawner.SpawnedKaiju[i].KaijuStats.KaijuName, _spawner.SpawnedKaiju[i].Level.ToString(), 
-                _spawner.SpawnedKaiju[i].CurrentHealth/_spawner.SpawnedKaiju[i].LocalHealth);
+            else
+            {
+                _kaijuButtons[i].GetComponent<KaijuButton>().RefreshStats(_spawner.SpawnedKaiju[i].KaijuStats.KaijuName, _spawner.SpawnedKaiju[i].Level.ToString(), 
+                    _spawner.SpawnedKaiju[i].CurrentHealth/_spawner.SpawnedKaiju[i].LocalHealth);
+            }
         }
     }
 

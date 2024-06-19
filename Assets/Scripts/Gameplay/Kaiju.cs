@@ -29,13 +29,14 @@ public class Kaiju : MonoBehaviour
     [SerializeField] private float statLevelIncrement;
     [SerializeField] private float statLevelMultiplier;
 
-    private bool _isDead;
+    public bool IsDead { get; private set; }
     
     #endregion
     
     #region Handlers and Events
     protected BattleMenuController _battleMenuController;
     protected RoundStatusHandler _statusHandler;
+    private KaijuSpawner _spawner;
 
     private UnityEvent _kaijuHasDied;
 
@@ -66,6 +67,7 @@ public class Kaiju : MonoBehaviour
 
         _battleMenuController = FindFirstObjectByType<BattleMenuController>();
         _statusHandler = FindFirstObjectByType<RoundStatusHandler>();
+        _spawner = FindFirstObjectByType<KaijuSpawner>();
 
         _kaijuHasDied ??= new UnityEvent();
     }
@@ -115,7 +117,7 @@ public class Kaiju : MonoBehaviour
 
     public virtual void Attack(Kaiju targetKaiju, int moveToPerformIndex)
     {
-        if (_isDead) return;
+        if (IsDead) return;
         
         _targetKaiju = targetKaiju;
         _statusHandler.AddToDetails($"{KaijuStats.KaijuName} used {LearnedMoves[moveToPerformIndex].MoveName}!");
@@ -153,8 +155,8 @@ public class Kaiju : MonoBehaviour
 
     protected virtual void Die()
     {
-        _isDead = true;
-        Destroy(gameObject);
+        IsDead = true;
+        gameObject.SetActive(false);
         _statusHandler.DisplayBattleWon(KaijuStats.KaijuName);
     }
 
