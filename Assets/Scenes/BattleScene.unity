@@ -2763,6 +2763,53 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 516609840}
   m_CullTransparentMesh: 1
+--- !u!1 &538586467
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 538586469}
+  - component: {fileID: 538586468}
+  m_Layer: 0
+  m_Name: '[EnemyKaijuParty]'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &538586468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 538586467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f70981351701724492bae65fc018a46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <KaijuInParty>k__BackingField:
+  - {fileID: 3287319752907483775, guid: 576701cd59b933c4ca19fe0d48a577d6, type: 3}
+  - {fileID: 3287319752907483775, guid: 7ccb57199c56497498b0a36f0c48baf1, type: 3}
+--- !u!4 &538586469
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 538586467}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.38318592, y: -0.2629707, z: -0.008760797}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &549822370
 GameObject:
   m_ObjectHideFlags: 0
@@ -5276,7 +5323,7 @@ GameObject:
   - component: {fileID: 1007025577}
   - component: {fileID: 1007025576}
   m_Layer: 0
-  m_Name: Square
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7290,6 +7337,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1588342061}
   m_CullTransparentMesh: 1
+--- !u!1 &1602323852
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1602323854}
+  - component: {fileID: 1602323853}
+  m_Layer: 0
+  m_Name: '[EnemyKaijuSpawner]'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1602323853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1602323852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4aa4c35d4dd411a856db9db1aba9708, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1602323854
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1602323852}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.38318592, y: -0.2629707, z: -0.008760797}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1623287178
 GameObject:
   m_ObjectHideFlags: 0
@@ -9470,63 +9561,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &4793472595158698100
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 5181579303557093581, guid: 576701cd59b933c4ca19fe0d48a577d6, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 2.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5181579303557093581, guid: 576701cd59b933c4ca19fe0d48a577d6, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 3.52
-      objectReference: {fileID: 0}
-    - target: {fileID: 5181579303557093581, guid: 576701cd59b933c4ca19fe0d48a577d6, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5181579303557093581, guid: 576701cd59b933c4ca19fe0d48a577d6, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5181579303557093581, guid: 576701cd59b933c4ca19fe0d48a577d6, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5181579303557093581, guid: 576701cd59b933c4ca19fe0d48a577d6, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5181579303557093581, guid: 576701cd59b933c4ca19fe0d48a577d6, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5181579303557093581, guid: 576701cd59b933c4ca19fe0d48a577d6, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5181579303557093581, guid: 576701cd59b933c4ca19fe0d48a577d6, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5181579303557093581, guid: 576701cd59b933c4ca19fe0d48a577d6, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8013255329664874713, guid: 576701cd59b933c4ca19fe0d48a577d6, type: 3}
-      propertyPath: m_Name
-      value: EnemyKaiju
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 576701cd59b933c4ca19fe0d48a577d6, type: 3}
 --- !u!114 &5275928036833017538
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9703,14 +9737,15 @@ Transform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 1007025577}
   - {fileID: 619394802}
   - {fileID: 201995076}
   - {fileID: 957202457}
   - {fileID: 8473504093820864821}
   - {fileID: 3713825135017633789}
-  - {fileID: 4793472595158698100}
   - {fileID: 934011959}
   - {fileID: 45085141}
-  - {fileID: 1007025577}
   - {fileID: 859004630}
   - {fileID: 1116617962}
+  - {fileID: 538586469}
+  - {fileID: 1602323854}

@@ -96,7 +96,7 @@ public class BattleMenuController : MonoBehaviour
                 var moveIndex = i;
                 _attackButtons[i].onClick.RemoveAllListeners();
                 _attackButtons[i].GetComponentInChildren<TMP_Text>().text = _playerKaiju.LearnedMoves[i].MoveName;
-                _attackButtons[i].onClick.AddListener(delegate {_turnHandler.DetermineFirstKaiju(_playerKaiju, _enemyKaiju, moveIndex); });
+                _attackButtons[i].onClick.AddListener(delegate {_enemyKaiju = FindFirstObjectByType<EnemyKaiju>(); _turnHandler.DetermineFirstKaiju(_playerKaiju, _enemyKaiju, moveIndex); });
                 _attackButtons[i].onClick.AddListener(delegate { StartCoroutine(_statusHandler.DisplayDetails());});
                 _attackButtons[i].onClick.AddListener(ReturnToMainMenu);
             }
@@ -119,7 +119,7 @@ public class BattleMenuController : MonoBehaviour
                 _kaijuButtons[i].GetComponentInChildren<TMP_Text>().text = _spawner.SpawnedKaiju[i].KaijuStats.KaijuName;
                 _kaijuButtons[i].onClick.AddListener(delegate{_statusHandler.AddToDetails($"Great job, {FindFirstObjectByType<PlayerKaiju>()?.KaijuStats.KaijuName}! Come back!"); });
                 _kaijuButtons[i].onClick.AddListener(delegate{FindFirstObjectByType<PlayerKaiju>()?.gameObject.SetActive(false);});
-                _kaijuButtons[i].onClick.AddListener(delegate{_spawner.SpawnedKaiju[kaijuIndex]?.gameObject.SetActive(true); });
+                _kaijuButtons[i].onClick.AddListener(delegate{_spawner.SpawnedKaiju[kaijuIndex]?.gameObject.SetActive(true);});
                 _kaijuButtons[i].onClick.AddListener(delegate{_playerKaiju = FindFirstObjectByType<PlayerKaiju>(); RenewPlayerStatValues(); RefreshAttackButtons();});
                 _kaijuButtons[i].onClick.AddListener(delegate{_statusHandler.AddToDetails($"Go, {_spawner.SpawnedKaiju[kaijuIndex]?.KaijuStats.KaijuName}!");});
                 _kaijuButtons[i].onClick.AddListener(delegate{ StartCoroutine(_statusHandler.DisplayDetails());});
@@ -180,7 +180,7 @@ public class BattleMenuController : MonoBehaviour
         UpdateSpecificName(playerName, _playerKaiju.KaijuStats.KaijuName);
         UpdateLevelValue(playerLvl, _playerKaiju.Level);
     }
-    private void RenewEnemyStatValues()
+    public void RenewEnemyStatValues()
     {
         UpdateSpecificName(enemyName, _enemyKaiju.KaijuStats.KaijuName);
         UpdateLevelValue(enemyLvl, _enemyKaiju.Level);

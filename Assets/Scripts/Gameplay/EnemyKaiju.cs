@@ -19,28 +19,35 @@ public class EnemyKaiju : Kaiju
     {
         AddToPlayerXpProgression(_targetKaiju, _localXp);
         
+        base.Die();
+        
         //Check if there is another kaiju in the enemy's party, if so, swap it, if not, end the battle
         var enemyParty = FindFirstObjectByType<EnemyKaijuParty>();
         var spawnedEnemyKaiju = FindFirstObjectByType<EnemyKaijuSpawner>();
-        if (enemyParty.KaijuInParty.Count > 1)
+        
+        foreach (var kaiju in spawnedEnemyKaiju.SpawnedKaiju)
         {
-            var randomKaijuToSendOut = Random.Range(0, enemyParty.KaijuInParty.Count);
-            while (!spawnedEnemyKaiju.SpawnedKaiju[randomKaijuToSendOut])
+            if (!kaiju.IsDead)
             {
-                randomKaijuToSendOut = Random.Range(0, enemyParty.KaijuInParty.Count);
-            }
-            
-            if (!spawnedEnemyKaiju.SpawnedKaiju[randomKaijuToSendOut].IsDead)
-            {
+                if (enemyParty.KaijuInParty.Count <= 1) continue;
+                
+                var randomKaijuToSendOut = Random.Range(0, enemyParty.KaijuInParty.Count);
+                while (spawnedEnemyKaiju.SpawnedKaiju[randomKaijuToSendOut].IsDead)
+                {
+                    randomKaijuToSendOut = Random.Range(0, enemyParty.KaijuInParty.Count);
+                }
+
+                if (spawnedEnemyKaiju.SpawnedKaiju[randomKaijuToSendOut].IsDead) continue;
+                
                 spawnedEnemyKaiju.SpawnedKaiju[randomKaijuToSendOut].gameObject.SetActive(true);
+                _battleMenuController.RenewEnemyStatValues();
             }
-            
-            
+            else
+            {
+                _statusHandler.DisplayBattleWon(KaijuStats.KaijuName);
+            }
         }
         
-        //_statusHandler.DisplayBattleWon(KaijuStats.KaijuName);
-        
-        base.Die();
     }
     
     private void AddToPlayerXpProgression(Kaiju playerKaiju, int xpToAdd)

@@ -158,15 +158,6 @@ public class Kaiju : MonoBehaviour
     {
         IsDead = true;
         gameObject.SetActive(false);
-        if (!GetComponent<PlayerKaiju>())
-        {
-            //Check if there is another kaiju in the enemy's party, if so, swap it, if not, end the battle
-            _statusHandler.DisplayBattleWon(KaijuStats.KaijuName);
-        }
-        else
-        {
-            //Allow player to swap a new Kaiju into battle so long as there is another Kaiju to swap in
-        }
     }
 
     private IEnumerator LerpHealthValue(float valueDealt, float speed)
