@@ -12,5 +12,6 @@ public class PlayerKaiju : Kaiju
     {
         //Allow player to swap a new Kaiju into battle so long as there is another Kaiju to swap in
         base.Die();
+        _battleMenuController.OpenKaijuMenuAfterDeath();
     }
 }

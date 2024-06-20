@@ -4,11 +4,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem.UI;
+using UnityEngine.SceneManagement;
 
 public class RoundStatusHandler : MonoBehaviour
 {
     public List<string> DetailsToDisplay = new();
 
+    private EventSystem _eventSystem;
+    private InputSystemUIInputModule _inputModule;
     [SerializeField] private GameObject displayWindow;
     [SerializeField] private TMP_Text displayText; 
 
@@ -22,6 +27,8 @@ public class RoundStatusHandler : MonoBehaviour
 
     private void Start()
     {
+        _eventSystem = FindFirstObjectByType<EventSystem>();
+        _inputModule = _eventSystem.GetComponent<InputSystemUIInputModule>();
         _waitForDuration ??= new WaitForSeconds(timeBetweenDetails);
         _turnHandler = FindFirstObjectByType<TurnHandler>();
         displayWindow.SetActive(false);
@@ -35,6 +42,7 @@ public class RoundStatusHandler : MonoBehaviour
         if (DetailsToDisplay.Count <= 0 && displayWindow.activeSelf)
         {
             displayWindow.SetActive(false);
+            _inputModule.enabled = true;
         }
     }
 
@@ -46,6 +54,7 @@ public class RoundStatusHandler : MonoBehaviour
     public IEnumerator DisplayDetails()
     {
         displayWindow.SetActive(true);
+        _inputModule.enabled = false;
         if (DetailsToDisplay.Count <= 0) yield break;
         for(var i = 0; i < DetailsToDisplay.Count; i++)
         {
@@ -61,6 +70,20 @@ public class RoundStatusHandler : MonoBehaviour
         StopCoroutine(DisplayDetails());
         AddToDetails($"You have defeated {nameOfOpponent}!");
         StartCoroutine(DisplayDetails());
+        Invoke(nameof(LeaveBattle), 8f);
+    }
+    
+    public void DisplayBattleLost()
+    {
+        StopCoroutine(DisplayDetails());
+        AddToDetails($"All your Kaiju are dead, you go into shock and the enemy trainer flees...");
+        StartCoroutine(DisplayDetails());
+        Invoke(nameof(LeaveBattle), 8f);
+    }
+
+    public void LeaveBattle()
+    {
+        SceneManager.LoadScene("CharacterTestScene");
     }
 
     public void DisplayXpGain(int xpGained)
