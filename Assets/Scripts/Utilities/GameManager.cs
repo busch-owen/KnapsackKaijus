@@ -9,6 +9,16 @@ public class GameManager : Singleton<GameManager>
 
     public event OnPlayerInputStateChanged PlayerInputState;
 
+    private void Start()
+    {
+        PlayerController player = FindFirstObjectByType<PlayerController>();
+        player.OnEnterTrainerView += (Collider2D trainerCollider) =>
+        {
+            var trainer = trainerCollider.GetComponent<Trainer>();
+            if (trainer != null) { StartCoroutine(trainer.TriggerTrainerBattle(player)); }
+        };
+    }
+
     public void DisablePlayerInput()
     {
         IsPlayerInputDisabled = true;

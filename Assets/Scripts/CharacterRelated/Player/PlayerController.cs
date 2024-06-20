@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour
     private Vector2 _inputDir;
     private Vector2 _lastInputDir = Vector2.zero;
 
+    public event Action<Collider2D> OnEnterTrainerView;
+
     private void Awake()
     {
         _animator = GetComponent<Animator>();
@@ -21,6 +23,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        CheckIfInTrainerSight();
         UpdateAnimator(_inputDir);
     }
 
@@ -69,6 +72,15 @@ public class PlayerController : MonoBehaviour
         }
 
         return true;
+    }
+
+    void CheckIfInTrainerSight()
+    {
+        var trainerDetection = Physics2D.OverlapCircle(transform.position, 1f, LayerMask.GetMask("Trainer"));
+        if (trainerDetection != null)
+        {
+            OnEnterTrainerView?.Invoke(trainerDetection);
+        }
     }
 
     void UpdateAnimator(Vector2 dir)
