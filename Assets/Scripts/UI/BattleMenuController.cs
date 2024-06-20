@@ -280,4 +280,6 @@ public class BattleMenuController : MonoBehaviour
     {
         PlayerHealthBar.fillAmount = valueToUpdate / valueToMultBy;
     }
+
+    
 }

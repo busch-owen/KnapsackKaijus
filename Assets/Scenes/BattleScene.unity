@@ -2937,7 +2937,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <KaijuInParty>k__BackingField:
+  - {fileID: 3287319752907483775, guid: 7ccb57199c56497498b0a36f0c48baf1, type: 3}
   - {fileID: 3287319752907483775, guid: 576701cd59b933c4ca19fe0d48a577d6, type: 3}
+  - {fileID: 3287319752907483775, guid: d4b03929235211e49aa86f71375ece68, type: 3}
+  - {fileID: 3287319752907483775, guid: e452de55c046a87418a537d6fef4d654, type: 3}
+  - {fileID: 3287319752907483775, guid: 468061e9591d82147918f38ef4e666e7, type: 3}
 --- !u!4 &538586469
 Transform:
   m_ObjectHideFlags: 0
@@ -4726,6 +4730,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <KaijuInParty>k__BackingField:
   - {fileID: 6758960550268399841, guid: 881fd7c10ad414d459243134965e2515, type: 3}
+  - {fileID: 6758960550268399841, guid: ddabdc5c461272140ae41e456737b50a, type: 3}
+  - {fileID: 6758960550268399841, guid: cb17d8a513a343449ad32a68cb57855b, type: 3}
+  - {fileID: 6758960550268399841, guid: 7e6d667748a3cc641a801c5e1ab61a15, type: 3}
+  - {fileID: 6758960550268399841, guid: 950666aa5b2433e4c9287ddc73ad098c, type: 3}
 --- !u!4 &859004630
 Transform:
   m_ObjectHideFlags: 0
