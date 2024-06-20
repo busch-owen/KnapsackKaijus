@@ -203,7 +203,5 @@ public class Kaiju : MonoBehaviour
             }
             yield return _waitForFixedUpdate;
         }
-        _statusHandler.ClearDetails();
-        _statusHandler.InvokeFirstTurnFinished();
     }
 }

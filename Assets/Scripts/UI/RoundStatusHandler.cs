@@ -30,6 +30,14 @@ public class RoundStatusHandler : MonoBehaviour
         _firstDetailsFinished.AddListener(_turnHandler.SecondTurn);
     }
 
+    private void FixedUpdate()
+    {
+        if (DetailsToDisplay.Count <= 0 && displayWindow.activeSelf)
+        {
+            displayWindow.SetActive(false);
+        }
+    }
+
     public void AddToDetails(string detailToAdd)
     {
         DetailsToDisplay.Add(detailToAdd);
@@ -44,6 +52,7 @@ public class RoundStatusHandler : MonoBehaviour
             displayText.text = DetailsToDisplay[i];
             yield return _waitForDuration;
         }
+        ClearDetails();
         InvokeFirstTurnFinished();
     }
 
@@ -70,14 +79,13 @@ public class RoundStatusHandler : MonoBehaviour
 
     public void InvokeFirstTurnFinished()
     {
-        if (!_turnHandler.AttackerTwoTurn)
-            _firstDetailsFinished.Invoke();
-        ClearDetails();
+        if (_turnHandler.AttackerTwoTurn) return;
+        
+        _firstDetailsFinished.Invoke(); 
     }
 
     public void ClearDetails()
     {
-        displayWindow.SetActive(false);
         DetailsToDisplay.Clear();
     }
 }

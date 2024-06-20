@@ -4,7 +4,7 @@ public class EnemyKaijuSpawner : MonoBehaviour
 {
     private EnemyKaijuParty _kaijuParty;
 
-    public Kaiju[] SpawnedKaiju { get; private set; } = new Kaiju[6];
+    public EnemyKaiju[] SpawnedKaiju { get; private set; } = new EnemyKaiju[6];
 
     private void Awake()
     {
@@ -18,7 +18,7 @@ public class EnemyKaijuSpawner : MonoBehaviour
                 return;
             }
             
-            var kaijuSpawned = Instantiate(_kaijuParty.KaijuInParty[i]);
+            var kaijuSpawned = Instantiate(_kaijuParty.KaijuInParty[i].GetComponent<EnemyKaiju>());
             SpawnedKaiju[i] = kaijuSpawned;
             if (i > 0)
             {

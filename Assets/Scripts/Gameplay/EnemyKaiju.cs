@@ -23,11 +23,11 @@ public class EnemyKaiju : Kaiju
     
     protected override void Die()
     {
+        base.Die();
+        
         AddToPlayerXpProgression(_targetKaiju, _localXp);
         _kaijuSwap ??= FindFirstObjectByType<EnemyKaijuSwap>();
-        
-        base.Die();
-        _kaijuSwap.SwapInRandomKaiju();
+        _kaijuSwap.SwapInRandomKaiju(this);
     }
     
     private void AddToPlayerXpProgression(Kaiju playerKaiju, int xpToAdd)

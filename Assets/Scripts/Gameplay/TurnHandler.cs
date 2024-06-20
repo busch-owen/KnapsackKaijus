@@ -64,9 +64,9 @@ public class TurnHandler : MonoBehaviour
 
     public void SecondTurn()
     {
-        _statusHandler.ClearDetails();
         if (!_secondKaiju) return;
         AttackerTwoTurn = true;
+        _statusHandler.ClearDetails();
         _secondKaiju.Attack(_firstKaiju, _moveCastIndex);
         StartCoroutine(_statusHandler.DisplayDetails());
     }

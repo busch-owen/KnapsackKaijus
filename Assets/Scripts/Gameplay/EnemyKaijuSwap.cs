@@ -11,34 +11,45 @@ public class EnemyKaijuSwap : MonoBehaviour
     
     private int _kaijuOnTeam = 6;
 
-    private void Awake()
+    private void Start()
     {
         _enemyParty ??= FindFirstObjectByType<EnemyKaijuParty>();
         _spawnedEnemyKaiju ??= FindFirstObjectByType<EnemyKaijuSpawner>();
         _battleMenu ??= FindFirstObjectByType<BattleMenuController>();
+
+        for (var i = 0; i < _spawnedEnemyKaiju.SpawnedKaiju.Length; i++)
+        {
+            if(_spawnedEnemyKaiju.SpawnedKaiju[i]) continue;
+            
+            _kaijuOnTeam--;
+        }
     }
 
-    public void SwapInRandomKaiju()
+    public void SwapInRandomKaiju(EnemyKaiju previousActiveKaiju)
     {
+        var randomKaiju = Random.Range(0, _kaijuOnTeam);
+
+        var deadKaiju = 0;
         foreach (var kaiju in _spawnedEnemyKaiju.SpawnedKaiju)
         {
-            if (!kaiju)
+            Debug.Log(kaiju);
+            if(!kaiju)continue;
+            if (kaiju.IsDead)
             {
-                _kaijuOnTeam--;
-                Debug.Log(_kaijuOnTeam);
+                deadKaiju++;
             }
         }
 
-        if (_kaijuOnTeam == 0)
+        if (deadKaiju >= _kaijuOnTeam)
         {
-            //End the battle?
+            Debug.Log("All kaiju are dead, therefore you win the fight");
             return;
         }
-        var randomKaiju = Random.Range(0, _kaijuOnTeam);
         
-        while (_spawnedEnemyKaiju.SpawnedKaiju[randomKaiju].IsDead)
+        Debug.Log(randomKaiju);
+        while (_spawnedEnemyKaiju.SpawnedKaiju[randomKaiju] == previousActiveKaiju || _spawnedEnemyKaiju.SpawnedKaiju[randomKaiju].IsDead)
         {
-            randomKaiju = Random.Range(0, _spawnedEnemyKaiju.SpawnedKaiju.Length);
+            randomKaiju = Random.Range(0, randomKaiju);
         }
 
         _spawnedEnemyKaiju.SpawnedKaiju[randomKaiju].gameObject.SetActive(true);
