@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using Random = UnityEngine.Random;
@@ -10,8 +11,8 @@ public class Kaiju : MonoBehaviour
     
     private Types _localType;
     private Types _localWeakType;
-    private float _localHealth;
-    private float _currentHealth;
+    public float LocalHealth { get; private set; }
+    public float CurrentHealth { get; private set; }
     private float _localAttack;
     private float _localDefense;
     private float _localSpAttack;
@@ -40,6 +41,12 @@ public class Kaiju : MonoBehaviour
 
     protected Kaiju _targetKaiju;
     #endregion
+    
+    #region Misc Variables
+
+    private WaitForFixedUpdate _waitForFixedUpdate;
+    
+    #endregion
 
     private void Awake()
     {
@@ -47,8 +54,8 @@ public class Kaiju : MonoBehaviour
         
         _localType = KaijuStats.Type;
         _localWeakType = KaijuStats.WeakType;
-        _localHealth = KaijuStats.Health * statLevelMultiplier;
-        _currentHealth = _localHealth;
+        LocalHealth = KaijuStats.Health * statLevelMultiplier;
+        CurrentHealth = LocalHealth;
         _localAttack = KaijuStats.Attack * statLevelMultiplier;
         _localDefense = KaijuStats.Defense * statLevelMultiplier;
         _localSpAttack = KaijuStats.SpAttack * statLevelMultiplier;
@@ -96,27 +103,13 @@ public class Kaiju : MonoBehaviour
         
         if (movePerformed.CombatType == CombatType.Physical)
         {
-            _currentHealth -= damageToDeal / statLevelMultiplier * (_localDefense / 2.5f) * effectiveMultiplier;
+            //_currentHealth -= damageToDeal / statLevelMultiplier * (_localDefense / 2.5f) * effectiveMultiplier;
+            StartCoroutine(LerpHealthValue(damageToDeal / statLevelMultiplier * (_localDefense / 2.5f) * effectiveMultiplier, effectiveMultiplier));
         }
         else
         {
-            _currentHealth -= damageToDeal / statLevelMultiplier * (_localSpDefense / 2.5f) * effectiveMultiplier;
-        }
-        
-        bool isPlayer = GetComponent<PlayerKaiju>();
-        if (isPlayer)
-        {
-            _battleMenuController.UpdatePlayerHealthBar(_currentHealth, _localHealth);
-        }
-        else
-        {
-            _battleMenuController.UpdateEnemyHealthBar(_currentHealth, _localHealth);
-        }
-
-        if (_currentHealth <= 0)
-        {
-            _statusHandler.AddToDetails($"{KaijuStats.KaijuName} has brutally died");
-            Die();
+            //_currentHealth -= damageToDeal / statLevelMultiplier * (_localSpDefense / 2.5f) * effectiveMultiplier;
+            StartCoroutine(LerpHealthValue(damageToDeal / statLevelMultiplier * (_localSpDefense / 2.5f) * effectiveMultiplier, effectiveMultiplier));
         }
     }
 
@@ -163,5 +156,34 @@ public class Kaiju : MonoBehaviour
         _isDead = true;
         Destroy(gameObject);
         _statusHandler.DisplayBattleWon(KaijuStats.KaijuName);
+    }
+
+    private IEnumerator LerpHealthValue(float valueDealt, float speed)
+    {
+        var newValue = CurrentHealth - valueDealt;
+        newValue = Mathf.Clamp(newValue, -0.1f, CurrentHealth);
+
+        while (!Mathf.Approximately(CurrentHealth, newValue))
+        {
+            CurrentHealth = Mathf.Lerp(CurrentHealth, newValue, speed * Time.fixedDeltaTime);
+            bool isPlayer = GetComponent<PlayerKaiju>();
+            
+            if (isPlayer)
+            {
+                _battleMenuController.UpdatePlayerHealthBar(CurrentHealth, LocalHealth);
+            }
+            else
+            {
+                _battleMenuController.UpdateEnemyHealthBar(CurrentHealth, LocalHealth);
+            }
+            
+            if (CurrentHealth < 0)
+            {
+                _statusHandler.AddToDetails($"{KaijuStats.KaijuName} has brutally died");
+                Die();
+                yield break;
+            }
+            yield return _waitForFixedUpdate;
+        }
     }
 }

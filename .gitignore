@@ -2,6 +2,7 @@
 #
 # Get latest from https://github.com/github/gitignore/blob/master/Unity.gitignore
 #
+/[Uu]ser[Ss]ettings/
 /[Ll]ibrary/
 /[Tt]emp/
 /[Oo]bj/
@@ -9,7 +10,6 @@
 /[Bb]uilds/
 /[Ll]ogs/
 /[Mm]emory[Cc]aptures/
-/[Uu]ser[Ss]ettings/
 
 # Never ignore Asset meta data
 !/[Aa]ssets/**/*.meta
@@ -64,3 +64,5 @@ crashlytics-build.properties
 
 UserSettings
 .idea
+
+Assets/Art/Fonts/pixeled/

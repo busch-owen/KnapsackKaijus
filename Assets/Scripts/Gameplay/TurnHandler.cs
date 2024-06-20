@@ -1,5 +1,4 @@
 using System;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class TurnHandler : MonoBehaviour
@@ -40,8 +39,19 @@ public class TurnHandler : MonoBehaviour
         }
     }
 
+    public void ForfeitMove(Kaiju playerKaiju, EnemyKaiju enemyKaiju)
+    {
+        AttackerTwoTurn = false;
+        _firstKaiju = playerKaiju;
+        _secondKaiju = enemyKaiju;
+        Debug.Log("Turn forfeit, enemy goes next");
+    }
+
+
     public void SecondTurn()
     {
+        _statusHandler.ClearDetails();
+        if (!_secondKaiju) return;
         AttackerTwoTurn = true;
         _secondKaiju.Attack(_firstKaiju, _moveCastIndex);
         StartCoroutine(_statusHandler.DisplayDetails());
