@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd6dd5a8d226d244e87c7ad88a940618, type: 3}
   m_Name: AirKaijuStats
   m_EditorClassIdentifier: 
-  <KaijuName>k__BackingField: Air Kaiju
+  <KaijuName>k__BackingField: Moonpuff
   <Type>k__BackingField: 1
   <WeakType>k__BackingField: 4
   <Health>k__BackingField: 11

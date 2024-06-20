@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd6dd5a8d226d244e87c7ad88a940618, type: 3}
   m_Name: EarthKaijuStats
   m_EditorClassIdentifier: 
-  <KaijuName>k__BackingField: Earth Kaiju
+  <KaijuName>k__BackingField: Terrlian
   <Type>k__BackingField: 3
   <WeakType>k__BackingField: 1
   <Health>k__BackingField: 15

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd6dd5a8d226d244e87c7ad88a940618, type: 3}
   m_Name: FireKaijuStats
   m_EditorClassIdentifier: 
-  <KaijuName>k__BackingField: Fire Kaiju
+  <KaijuName>k__BackingField: Grazu
   <Type>k__BackingField: 0
   <WeakType>k__BackingField: 2
   <Health>k__BackingField: 10
