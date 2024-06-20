@@ -36,6 +36,9 @@ public class BattleMenuController : MonoBehaviour
     [SerializeField] private TMP_Text enemyLvl;
     [SerializeField] private TMP_Text playerLvl;
 
+    private AudioSource _sfxSource;
+    [SerializeField] private AudioClip moveSelectionClip, selectButtonClip;
+
     private void Awake()
     {
         _eventSystem = FindFirstObjectByType<EventSystem>();
@@ -43,6 +46,7 @@ public class BattleMenuController : MonoBehaviour
         _statusHandler = FindFirstObjectByType<RoundStatusHandler>();
         _spawner = FindFirstObjectByType<KaijuSpawner>();
         _inputModule = _eventSystem.GetComponent<InputSystemUIInputModule>();
+        _sfxSource = GetComponent<AudioSource>();
         _attackButtons = attackMenu.GetComponentsInChildren<Button>();
         _kaijuButtons = kaijuMenu.GetComponentsInChildren<Button>();
         attackMenu.SetActive(false);
@@ -67,6 +71,40 @@ public class BattleMenuController : MonoBehaviour
     private void Update()
     {
         CancelPressed();
+        SelectionMoved();
+        ButtonPressed();
+    }
+
+    public bool CheckIfAllDead()
+    {
+        int deadKaiju = 0;
+        int activeKaiju = 0;
+        
+        foreach (PlayerKaiju kaiju in _spawner.SpawnedKaiju)
+        {
+            if(!kaiju) continue;
+            if (kaiju)
+            {
+                activeKaiju++;
+                Debug.Log(activeKaiju);
+            }
+        }
+
+        for (int i = 0; i < activeKaiju; i++)
+        {
+            if (_spawner.SpawnedKaiju[i].IsDead)
+            {
+                deadKaiju++;
+            }
+        }
+
+        if (deadKaiju >= activeKaiju)
+        {
+            _statusHandler.DisplayBattleLost();
+            return true;
+        }
+        
+        return false;
     }
 
     public void OpenSpecificMenu(GameObject menuToOpen)
@@ -133,6 +171,33 @@ public class BattleMenuController : MonoBehaviour
             }
         }
     }
+    
+    public void OpenKaijuMenuAfterDeath()
+    {
+        if(CheckIfAllDead()) return;
+        
+        OpenSpecificMenu(kaijuMenu);
+        _statusHandler.ClearDetails();
+        
+        for (var i = 0; i < _kaijuButtons.Length; i++)
+        {
+            if (_spawner.SpawnedKaiju[i] != null)
+            {
+                var kaijuIndex = i;
+                //Very hacky solution for now, if I have time I would like to add an inspect panel to see the stats of your Kaiju
+                _kaijuButtons[i].onClick.RemoveAllListeners();
+                
+                _kaijuButtons[i].GetComponentInChildren<TMP_Text>().text = _spawner.SpawnedKaiju[i].KaijuStats.KaijuName;
+                _kaijuButtons[i].onClick.AddListener(delegate{FindFirstObjectByType<PlayerKaiju>()?.gameObject.SetActive(false);});
+                _kaijuButtons[i].onClick.AddListener(delegate{_spawner.SpawnedKaiju[kaijuIndex]?.gameObject.SetActive(true);});
+                _kaijuButtons[i].onClick.AddListener(delegate{RenewPlayerStatValues(); RefreshAttackButtons();});
+                _kaijuButtons[i].onClick.AddListener(delegate{_statusHandler.AddToDetails($"Go, {_spawner.SpawnedKaiju[kaijuIndex]?.KaijuStats.KaijuName}!");});
+                _kaijuButtons[i].onClick.AddListener(delegate{ StartCoroutine(_statusHandler.DisplayDetails());});
+                
+                _kaijuButtons[i].onClick.AddListener(ReturnToMainMenu);
+            }
+        }
+    }
 
     private void RefreshKaijuMenuStats()
     {
@@ -163,10 +228,25 @@ public class BattleMenuController : MonoBehaviour
     private void CancelPressed()
     {
         if(!_currentMenu) return;
-        
-        if (_inputModule.cancel.action.ReadValue<float>() > 0)
+
+        if (!_inputModule.cancel.action.triggered) return;
+        _cancelPressed.Invoke();
+        _sfxSource.PlayOneShot(moveSelectionClip);
+    }
+
+    private void SelectionMoved()
+    {
+        if (_inputModule.move.action.triggered)
         {
-            _cancelPressed.Invoke();
+            _sfxSource.PlayOneShot(moveSelectionClip);
+        }
+    }
+
+    private void ButtonPressed()
+    {
+        if (_inputModule.submit.action.triggered)
+        {
+            _sfxSource.PlayOneShot(selectButtonClip);
         }
     }
 
@@ -208,4 +288,6 @@ public class BattleMenuController : MonoBehaviour
     {
         PlayerHealthBar.fillAmount = valueToUpdate / valueToMultBy;
     }
+
+    
 }

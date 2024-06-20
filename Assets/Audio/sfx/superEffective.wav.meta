@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 4fd2e92be4a0b2540a2cf9568c27cba0
+=======
+guid: b648bc40046eab242bb83d162caa05d9
+>>>>>>> origin/trainer-battle-init
 AudioImporter:
   externalObjects: {}
   serializedVersion: 8

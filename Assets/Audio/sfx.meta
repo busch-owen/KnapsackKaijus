@@ -1,7 +1,12 @@
 fileFormatVersion: 2
-guid: 0ca7ed2051d9e8847b9af3cd10d531c9
+<<<<<<<< HEAD:Assets/Prefabs/Kaiju/KaijuHandlers/[EnemyKaijuParty].prefab.meta
+guid: b36c129caf2a3b0428941991536c7245
+PrefabImporter:
+========
+guid: 50ab4993b70e4424380a8a0a3e528fac
 folderAsset: yes
 DefaultImporter:
+>>>>>>>> origin/trainer-battle-init:Assets/Audio/sfx.meta
   externalObjects: {}
   userData: 
   assetBundleName: 
