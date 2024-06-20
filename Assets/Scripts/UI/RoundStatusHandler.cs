@@ -7,7 +7,7 @@ using UnityEngine.Events;
 
 public class RoundStatusHandler : MonoBehaviour
 {
-    public List<string> _detailsToDisplay = new List<string>();
+    public List<string> DetailsToDisplay = new();
 
     [SerializeField] private GameObject displayWindow;
     [SerializeField] private TMP_Text displayText; 
@@ -32,21 +32,19 @@ public class RoundStatusHandler : MonoBehaviour
 
     public void AddToDetails(string detailToAdd)
     {
-        _detailsToDisplay.Add(detailToAdd);
+        DetailsToDisplay.Add(detailToAdd);
     }
 
     public IEnumerator DisplayDetails()
     {
         displayWindow.SetActive(true);
-        if (_detailsToDisplay.Count <= 0) yield break;
-        for(var i = 0; i < _detailsToDisplay.Count; i++)
+        if (DetailsToDisplay.Count <= 0) yield break;
+        for(var i = 0; i < DetailsToDisplay.Count; i++)
         {
-            displayText.text = _detailsToDisplay[i];
+            displayText.text = DetailsToDisplay[i];
             yield return _waitForDuration;
         }
-        ClearDetails();
-        if (!_turnHandler.AttackerTwoTurn)
-            _firstDetailsFinished.Invoke();
+        InvokeFirstTurnFinished();
     }
 
     public void DisplayBattleWon(string nameOfOpponent)
@@ -70,9 +68,16 @@ public class RoundStatusHandler : MonoBehaviour
         StartCoroutine(DisplayDetails());
     }
 
+    public void InvokeFirstTurnFinished()
+    {
+        if (!_turnHandler.AttackerTwoTurn)
+            _firstDetailsFinished.Invoke();
+        ClearDetails();
+    }
+
     public void ClearDetails()
     {
-        _detailsToDisplay.Clear();
         displayWindow.SetActive(false);
+        DetailsToDisplay.Clear();
     }
 }

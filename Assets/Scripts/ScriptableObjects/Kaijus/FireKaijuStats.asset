@@ -16,8 +16,8 @@ MonoBehaviour:
   <Type>k__BackingField: 0
   <WeakType>k__BackingField: 2
   <Health>k__BackingField: 10
-  <Attack>k__BackingField: 4
+  <Attack>k__BackingField: 2
   <Defense>k__BackingField: 2
   <SpAttack>k__BackingField: 2
   <SpDefense>k__BackingField: 4
-  <Speed>k__BackingField: 5
+  <Speed>k__BackingField: 4

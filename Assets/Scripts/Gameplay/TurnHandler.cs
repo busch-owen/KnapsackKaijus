@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class TurnHandler : MonoBehaviour
@@ -20,22 +19,38 @@ public class TurnHandler : MonoBehaviour
     public void DetermineFirstKaiju(Kaiju playerKaiju, EnemyKaiju enemyKaiju, int playerMoveIndex)
     {
         AttackerTwoTurn = false;
-        if (playerKaiju.LocalSpeed > enemyKaiju.LocalSpeed)
+        if (playerKaiju.LocalSpeed > enemyKaiju.LocalSpeed) // Player's move
         {
             _moveCastIndex = playerMoveIndex;
             _firstKaiju = playerKaiju;
             _secondKaiju = enemyKaiju;
             playerKaiju.Attack(enemyKaiju, playerMoveIndex);
-            Debug.Log("Player Went First");
         }
-        else
+        else if(enemyKaiju.LocalHealth > playerKaiju.LocalSpeed) // Enemy's move
         {
-            //This is just temporary, the attack on K2 will be a random choice from the AI
             _moveCastIndex = playerMoveIndex;
             _firstKaiju = enemyKaiju;
             _secondKaiju = playerKaiju;
             enemyKaiju.Attack(playerKaiju, playerMoveIndex);
-            Debug.Log("Enemy Went First");
+        }
+        else
+        {
+            var whoGoes = Random.Range(0, 2);
+            switch (whoGoes)
+            {
+                case 0: // Player's move
+                    _moveCastIndex = playerMoveIndex;
+                    _firstKaiju = playerKaiju;
+                    _secondKaiju = enemyKaiju;
+                    playerKaiju.Attack(enemyKaiju, playerMoveIndex);
+                    break;
+                case 1: // Enemy's move
+                    _moveCastIndex = playerMoveIndex;
+                    _firstKaiju = enemyKaiju;
+                    _secondKaiju = playerKaiju;
+                    enemyKaiju.Attack(playerKaiju, playerMoveIndex);
+                    break;
+            }
         }
     }
 
@@ -44,7 +59,6 @@ public class TurnHandler : MonoBehaviour
         AttackerTwoTurn = false;
         _firstKaiju = playerKaiju;
         _secondKaiju = enemyKaiju;
-        Debug.Log("Turn forfeit, enemy goes next");
     }
 
 
@@ -55,6 +69,5 @@ public class TurnHandler : MonoBehaviour
         AttackerTwoTurn = true;
         _secondKaiju.Attack(_firstKaiju, _moveCastIndex);
         StartCoroutine(_statusHandler.DisplayDetails());
-        Debug.Log("Second attacker now attacking");
     }
 }

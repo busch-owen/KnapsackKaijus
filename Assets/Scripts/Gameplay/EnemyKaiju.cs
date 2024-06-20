@@ -2,7 +2,13 @@ using UnityEngine;
 
 public class EnemyKaiju : Kaiju
 {
-
+    private EnemyKaijuSwap _kaijuSwap;
+    
+    private void OnEnable()
+    {
+        _battleMenuController.UpdateEnemyHealthBar(CurrentHealth, LocalHealth);
+    }
+    
     protected override void TakeDamage(float damageToDeal, MoveStats movePerformed)
     {
         _targetKaiju = FindFirstObjectByType<PlayerKaiju>();
@@ -18,7 +24,10 @@ public class EnemyKaiju : Kaiju
     protected override void Die()
     {
         AddToPlayerXpProgression(_targetKaiju, _localXp);
+        _kaijuSwap ??= FindFirstObjectByType<EnemyKaijuSwap>();
+        
         base.Die();
+        _kaijuSwap.SwapInRandomKaiju();
     }
     
     private void AddToPlayerXpProgression(Kaiju playerKaiju, int xpToAdd)

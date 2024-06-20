@@ -29,13 +29,15 @@ public class Kaiju : MonoBehaviour
     [SerializeField] private float statLevelIncrement;
     [SerializeField] private float statLevelMultiplier;
 
-    private bool _isDead;
+    public bool IsDead { get; private set; }
     
     #endregion
     
     #region Handlers and Events
     protected BattleMenuController _battleMenuController;
     protected RoundStatusHandler _statusHandler;
+    private KaijuSpawner _spawner;
+    private TurnHandler _turnHandler;
 
     private UnityEvent _kaijuHasDied;
 
@@ -66,6 +68,7 @@ public class Kaiju : MonoBehaviour
 
         _battleMenuController = FindFirstObjectByType<BattleMenuController>();
         _statusHandler = FindFirstObjectByType<RoundStatusHandler>();
+        _spawner = FindFirstObjectByType<KaijuSpawner>();
 
         _kaijuHasDied ??= new UnityEvent();
     }
@@ -104,18 +107,18 @@ public class Kaiju : MonoBehaviour
         if (movePerformed.CombatType == CombatType.Physical)
         {
             //_currentHealth -= damageToDeal / statLevelMultiplier * (_localDefense / 2.5f) * effectiveMultiplier;
-            StartCoroutine(LerpHealthValue(damageToDeal / statLevelMultiplier * (_localDefense / 2.5f) * effectiveMultiplier, effectiveMultiplier));
+            StartCoroutine(LerpHealthValue(damageToDeal / statLevelMultiplier * (_localDefense / 2.5f) * effectiveMultiplier, effectiveMultiplier * 2));
         }
         else
         {
             //_currentHealth -= damageToDeal / statLevelMultiplier * (_localSpDefense / 2.5f) * effectiveMultiplier;
-            StartCoroutine(LerpHealthValue(damageToDeal / statLevelMultiplier * (_localSpDefense / 2.5f) * effectiveMultiplier, effectiveMultiplier));
+            StartCoroutine(LerpHealthValue(damageToDeal / statLevelMultiplier * (_localSpDefense / 2.5f) * effectiveMultiplier, effectiveMultiplier * 2));
         }
     }
 
     public virtual void Attack(Kaiju targetKaiju, int moveToPerformIndex)
     {
-        if (_isDead) return;
+        if (IsDead) return;
         
         _targetKaiju = targetKaiju;
         _statusHandler.AddToDetails($"{KaijuStats.KaijuName} used {LearnedMoves[moveToPerformIndex].MoveName}!");
@@ -153,9 +156,8 @@ public class Kaiju : MonoBehaviour
 
     protected virtual void Die()
     {
-        _isDead = true;
-        Destroy(gameObject);
-        _statusHandler.DisplayBattleWon(KaijuStats.KaijuName);
+        IsDead = true;
+        gameObject.SetActive(false);
     }
 
     private IEnumerator LerpHealthValue(float valueDealt, float speed)
@@ -165,7 +167,7 @@ public class Kaiju : MonoBehaviour
 
         while (!Mathf.Approximately(CurrentHealth, newValue))
         {
-            CurrentHealth = Mathf.Lerp(CurrentHealth, newValue, speed * Time.fixedDeltaTime);
+            CurrentHealth = Mathf.MoveTowards(CurrentHealth, newValue, speed * Time.fixedDeltaTime);
             bool isPlayer = GetComponent<PlayerKaiju>();
             
             if (isPlayer)
@@ -185,5 +187,7 @@ public class Kaiju : MonoBehaviour
             }
             yield return _waitForFixedUpdate;
         }
+        _statusHandler.ClearDetails();
+        _statusHandler.InvokeFirstTurnFinished();
     }
 }
