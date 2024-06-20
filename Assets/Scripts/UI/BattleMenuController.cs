@@ -77,19 +77,22 @@ public class BattleMenuController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        CheckIfAllDead();
     }
 
-    private bool CheckIfAllDead()
+    public bool CheckIfAllDead()
     {
         int deadKaiju = 0;
         int activeKaiju = 0;
         foreach (PlayerKaiju kaiju in _spawner.SpawnedKaiju)
         {
-            if (!kaiju) continue;
-            activeKaiju++;
+            if(!kaiju) continue;
+            if (kaiju)
+            {
+                activeKaiju++;
+                Debug.Log(activeKaiju);
+            }
             if (kaiju.IsDead) deadKaiju++;
-            if (deadKaiju == activeKaiju)
+            if (deadKaiju >= activeKaiju)
             {
                 if(_statusHandler.DetailsToDisplay.Count <= 0)
                     _statusHandler.DisplayBattleLost();
