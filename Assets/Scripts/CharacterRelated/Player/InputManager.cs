@@ -26,6 +26,8 @@ public class InputManager : MonoBehaviour
 
             if (GameManager.Instance.IsPlayerInputDisabled)
             {
+                _input.Player.Move.started -= ctx => _playerMover.ProcessMovement(ctx.ReadValue<Vector2>());
+                _input.Player.Move.canceled -= ctx => _playerMover.ProcessMovement(ctx.ReadValue<Vector2>());
             }
         }
         _input.Enable();
