@@ -27,7 +27,7 @@ public class EnemyKaiju : Kaiju
         
         AddToPlayerXpProgression(_targetKaiju, _localXp);
         _kaijuSwap ??= FindFirstObjectByType<EnemyKaijuSwap>();
-        _kaijuSwap.SwapInRandomKaiju(this);
+        _kaijuSwap.SwapInRandomKaiju();
     }
     
     private void AddToPlayerXpProgression(Kaiju playerKaiju, int xpToAdd)

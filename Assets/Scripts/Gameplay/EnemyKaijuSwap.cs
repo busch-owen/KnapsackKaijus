@@ -25,7 +25,7 @@ public class EnemyKaijuSwap : MonoBehaviour
         }
     }
 
-    public void SwapInRandomKaiju(EnemyKaiju previousActiveKaiju)
+    public void SwapInRandomKaiju()
     {
         var randomKaiju = Random.Range(0, _kaijuOnTeam);
 
@@ -47,9 +47,9 @@ public class EnemyKaijuSwap : MonoBehaviour
         }
         
         Debug.Log(randomKaiju);
-        while (_spawnedEnemyKaiju.SpawnedKaiju[randomKaiju] == previousActiveKaiju || _spawnedEnemyKaiju.SpawnedKaiju[randomKaiju].IsDead)
+        while (_spawnedEnemyKaiju.SpawnedKaiju[randomKaiju].IsDead)
         {
-            randomKaiju = Random.Range(0, randomKaiju);
+            randomKaiju = Random.Range(0, _kaijuOnTeam);
         }
 
         _spawnedEnemyKaiju.SpawnedKaiju[randomKaiju].gameObject.SetActive(true);
