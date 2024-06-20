@@ -1,39 +1,56 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
     public bool IsPlayerInputDisabled { get; private set; }
+    PlayerController _player;
+    EnemyKaijuSpawner _enemyKaiju;
 
-    public delegate void OnPlayerInputStateChanged(bool currentState);
+    public GameState GameState;
 
-    public event OnPlayerInputStateChanged PlayerInputState;
+    string _battleScene = "BattleScene";
+    string _overWorldScene = "Route_01";
 
     private void Start()
     {
-        PlayerController player = FindFirstObjectByType<PlayerController>();
-        player.OnEncounter += EnterBattle;
-        player.OnEnterTrainerView += (Collider2D trainerCollider) =>
+        _player = FindFirstObjectByType<PlayerController>();
+        _enemyKaiju = FindFirstObjectByType<EnemyKaijuSpawner>();
+
+        _player.OnEncounter += EnterBattle;
+        _player.OnEnterTrainerView += (Collider2D trainerCollider) =>
         {
             var trainer = trainerCollider.GetComponent<Trainer>();
-            if (trainer != null) { StartCoroutine(trainer.TriggerTrainerBattle(player)); }
+            if (trainer != null) { StartCoroutine(trainer.TriggerTrainerBattle(_player)); }
         };
+
+        _enemyKaiju.OnBattleOver += BattleOver;
     }
 
-    public void DisablePlayerInput()
+    void Update()
     {
-        IsPlayerInputDisabled = true;
-        PlayerInputState?.Invoke(IsPlayerInputDisabled);
-    }
-
-    public void EnablePlayerInput()
-    {
-        IsPlayerInputDisabled = false;
-        PlayerInputState?.Invoke(IsPlayerInputDisabled);
+        if (GameState == GameState.ROAM)
+        {
+            _player.HandleUpdate();
+        }
     }
 
     void EnterBattle()
     {
-        // 
+        GameState = GameState.BATTLE;
+        SceneManager.LoadScene(_battleScene);
     }
+
+    void BattleOver()
+    {
+        GameState = GameState.ROAM;
+        SceneManager.LoadScene(_overWorldScene);
+    }
+}
+
+public enum GameState 
+{
+    ROAM,
+    BATTLE
 }

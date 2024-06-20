@@ -30,6 +30,14 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (GameManager.Instance.GameState == GameState.ROAM)
+        {
+            HandleUpdate();
+        }
+    }
+
+    public void HandleUpdate()
+    {
         if (_inputDir != Vector2.zero && !_isMoving && CanMoveThere())
         {
             StartCoroutine(MovePlayer(_inputDir));
@@ -39,7 +47,6 @@ public class PlayerController : MonoBehaviour
         {
             CheckIfInTrainerSight();
         }
-
     }
 
     public void ProcessMovement(Vector2 direction)

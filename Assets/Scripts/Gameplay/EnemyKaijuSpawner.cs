@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class EnemyKaijuSpawner : MonoBehaviour
@@ -5,6 +6,8 @@ public class EnemyKaijuSpawner : MonoBehaviour
     private EnemyKaijuParty _kaijuParty;
 
     public Kaiju[] SpawnedKaiju { get; private set; } = new Kaiju[6];
+
+    public event Action OnBattleOver;
 
     private void Awake()
     {
@@ -24,6 +27,24 @@ public class EnemyKaijuSpawner : MonoBehaviour
             {
                 SpawnedKaiju[i].gameObject.SetActive(false);
             }
+        }
+    }
+
+    public void CheckAllKaijuAlive()
+    {
+        bool allInactive = true;
+        foreach (var kaiju in SpawnedKaiju)
+        {
+            if (kaiju != null && kaiju.gameObject.activeInHierarchy)
+            {
+                allInactive =  false;
+                break;
+            }
+        }
+
+        if (allInactive)
+        {
+            OnBattleOver?.Invoke();
         }
     }
 }

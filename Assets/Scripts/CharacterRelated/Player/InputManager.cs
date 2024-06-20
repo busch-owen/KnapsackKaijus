@@ -9,7 +9,6 @@ public class InputManager : MonoBehaviour
     private void Awake()
     {
         _playerMover = GetComponent<PlayerController>();
-        // GameManager.Instance.PlayerInputState += OnPlayerInputStateChanged;
     }
 
     private void OnEnable()
@@ -17,17 +16,11 @@ public class InputManager : MonoBehaviour
         if (_input == null)
         {
             _input = new InputMaster();
-            if (!GameManager.Instance.IsPlayerInputDisabled)
+            if (GameManager.Instance.GameState == GameState.ROAM)
             {
                 _input.Player.Move.started += ctx => _playerMover.ProcessMovement(ctx.ReadValue<Vector2>());
                 _input.Player.Move.canceled += ctx => _playerMover.ProcessMovement(ctx.ReadValue<Vector2>());
                 _input.Player.Start.performed += ctx => GameManager.Instance.PlayerInputState += OnPlayerInputStateChanged;
-            }
-
-            if (GameManager.Instance.IsPlayerInputDisabled)
-            {
-                _input.Player.Move.started -= ctx => _playerMover.ProcessMovement(ctx.ReadValue<Vector2>());
-                _input.Player.Move.canceled -= ctx => _playerMover.ProcessMovement(ctx.ReadValue<Vector2>());
             }
         }
         _input.Enable();
@@ -36,30 +29,5 @@ public class InputManager : MonoBehaviour
     private void OnDisable()
     {
         _input.Disable();
-        GameManager.Instance.PlayerInputState -= OnPlayerInputStateChanged;
-    }
-
-    void OnPlayerInputStateChanged(bool isEnabled)
-    {
-        if (isEnabled)
-        {
-            SubscribeToInputs();
-        }
-        else
-        {
-            UnsubscribeFromInputs();
-        }
-    }
-
-    void SubscribeToInputs()
-    {
-        _input.Player.Move.started += ctx => _playerMover.ProcessMovement(ctx.ReadValue<Vector2>());
-        _input.Player.Move.canceled += ctx => _playerMover.ProcessMovement(ctx.ReadValue<Vector2>());
-    }
-
-    void UnsubscribeFromInputs()
-    {
-        _input.Player.Move.started -= ctx => _playerMover.ProcessMovement(ctx.ReadValue<Vector2>());
-        _input.Player.Move.canceled -= ctx => _playerMover.ProcessMovement(ctx.ReadValue<Vector2>());
     }
 }

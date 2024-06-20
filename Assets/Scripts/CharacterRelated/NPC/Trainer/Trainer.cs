@@ -11,7 +11,7 @@ public class Trainer : MonoBehaviour
 
     public IEnumerator TriggerTrainerBattle(PlayerController player)
     {
-        GameManager.Instance.DisablePlayerInput();
+        GameManager.Instance.GameState = GameState.BATTLE;
         yield return new WaitForSeconds(0.2f);
         Debug.Log("Starting Battle!");
     }
