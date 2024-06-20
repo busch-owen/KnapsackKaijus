@@ -9920,6 +9920,7 @@ GameObject:
   - component: {fileID: 5574226910423927717}
   - component: {fileID: 5532629244446860543}
   - component: {fileID: 7938601712943138174}
+  - component: {fileID: 8473504093820864822}
   m_Layer: 0
   m_Name: CinemachineCamera
   m_TagString: Untagged
@@ -9954,6 +9955,14 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!81 &8473504093820864822
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7785634138699079240}
+  m_Enabled: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

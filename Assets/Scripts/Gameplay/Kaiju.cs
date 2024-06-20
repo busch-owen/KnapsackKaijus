@@ -49,6 +49,13 @@ public class Kaiju : MonoBehaviour
     private WaitForFixedUpdate _waitForFixedUpdate;
     
     #endregion
+    
+    #region SFX
+
+    [SerializeField] private AudioClip effectiveClip, superEffectiveClip, weakClip, missClip, attackClip;
+    private AudioSource _sfxPlayer;
+    
+    #endregion
 
     private void Awake()
     {
@@ -69,6 +76,7 @@ public class Kaiju : MonoBehaviour
         _battleMenuController = FindFirstObjectByType<BattleMenuController>();
         _statusHandler = FindFirstObjectByType<RoundStatusHandler>();
         _spawner = FindFirstObjectByType<KaijuSpawner>();
+        _sfxPlayer = GetComponent<AudioSource>();
 
         _kaijuHasDied ??= new UnityEvent();
     }
@@ -93,15 +101,19 @@ public class Kaiju : MonoBehaviour
         {
             effectiveMultiplier = 2f;
             _statusHandler.AddToDetails($"It was super effective!");
+            _sfxPlayer.PlayOneShot(superEffectiveClip);
+            
         }
         else if (movePerformed.MoveType == _localType)
         {
             effectiveMultiplier = 0.5f;
             _statusHandler.AddToDetails($"It wasn't very effective...");
+            _sfxPlayer.PlayOneShot(weakClip);
         }
         else
         {
             effectiveMultiplier = 1f;
+            _sfxPlayer.PlayOneShot(effectiveClip);
         }
         
         if (movePerformed.CombatType == CombatType.Physical)
@@ -126,18 +138,22 @@ public class Kaiju : MonoBehaviour
         if (MovePP[moveToPerformIndex] <= 0)
         {
             _statusHandler.AddToDetails($"But it failed...");
+            _sfxPlayer.PlayOneShot(missClip);
             return;
         }
         var moveWillHit = Random.Range(0, 100);
         if (moveWillHit > LearnedMoves[moveToPerformIndex].Accuracy)
         {
             _statusHandler.AddToDetails($"But it missed...");
+            _sfxPlayer.PlayOneShot(missClip);
             return;
         }
 
         var movePower = (100 - LearnedMoves[moveToPerformIndex].Strength) / 100f;
         
         MovePP[moveToPerformIndex]--;
+        
+        _sfxPlayer.PlayOneShot(attackClip);
         
         switch (LearnedMoves[moveToPerformIndex].CombatType)
         {
