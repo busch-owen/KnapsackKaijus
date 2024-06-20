@@ -101,11 +101,9 @@ public class PlayerController : MonoBehaviour
             int randomEncounterChance = UnityEngine.Random.Range(1, 101);
             if (randomEncounterChance <= 10)
             {
-                Debug.Log("Encountered a Kaiju!");
+                OnEncounter?.Invoke();
                 return;
             }
-            Debug.Log(randomEncounterChance);
-            return;
         }
     }
 

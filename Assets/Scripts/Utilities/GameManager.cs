@@ -12,6 +12,7 @@ public class GameManager : Singleton<GameManager>
     private void Start()
     {
         PlayerController player = FindFirstObjectByType<PlayerController>();
+        player.OnEncounter += EnterBattle;
         player.OnEnterTrainerView += (Collider2D trainerCollider) =>
         {
             var trainer = trainerCollider.GetComponent<Trainer>();
@@ -29,5 +30,10 @@ public class GameManager : Singleton<GameManager>
     {
         IsPlayerInputDisabled = false;
         PlayerInputState?.Invoke(IsPlayerInputDisabled);
+    }
+
+    void EnterBattle()
+    {
+        // 
     }
 }
