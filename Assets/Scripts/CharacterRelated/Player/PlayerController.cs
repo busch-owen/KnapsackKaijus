@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     private Animator _animator;
 
     private Vector2 _inputDir;
+    private Vector2 _lastInputDir = Vector2.zero;
 
     private void Awake()
     {
@@ -20,8 +21,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (!_isMoving)
-            UpdateAnimator(_inputDir);
+        UpdateAnimator(_inputDir);
     }
 
     private void FixedUpdate()
@@ -73,6 +73,7 @@ public class PlayerController : MonoBehaviour
 
     void UpdateAnimator(Vector2 dir)
     {
+
         if (Mathf.Abs(dir.y) > 0f)
         {
             _animator.Play("MoveTree");
@@ -85,7 +86,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            if (!_isMoving)
+            if(!_isMoving)
             {
                 _animator.Play("IdleTree");
                 _animator.SetFloat("MoveY", dir.y);
