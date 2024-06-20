@@ -20,7 +20,6 @@ public class InputManager : MonoBehaviour
             {
                 _input.Player.Move.started += ctx => _playerMover.ProcessMovement(ctx.ReadValue<Vector2>());
                 _input.Player.Move.canceled += ctx => _playerMover.ProcessMovement(ctx.ReadValue<Vector2>());
-                _input.Player.Start.performed += ctx => GameManager.Instance.PlayerInputState += OnPlayerInputStateChanged;
             }
         }
         _input.Enable();

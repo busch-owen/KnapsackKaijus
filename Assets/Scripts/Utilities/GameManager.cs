@@ -15,6 +15,7 @@ public class GameManager : Singleton<GameManager>
 
     private void Start()
     {
+        GameState = GameState.ROAM;
         _player = FindFirstObjectByType<PlayerController>();
         _enemyKaiju = FindFirstObjectByType<EnemyKaijuSpawner>();
 

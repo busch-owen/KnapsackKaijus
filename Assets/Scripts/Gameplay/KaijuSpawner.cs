@@ -6,7 +6,7 @@ public class KaijuSpawner : MonoBehaviour
 
     public Kaiju[] SpawnedKaiju { get; private set; } = new Kaiju[6];
 
-    private void Awake()
+    private void Start()
     {
         _kaijuParty = FindFirstObjectByType<KaijuParty>();
 

@@ -9,7 +9,7 @@ public class EnemyKaijuSpawner : MonoBehaviour
 
     public event Action OnBattleOver;
 
-    private void Awake()
+    private void Start()
     {
         _kaijuParty = FindFirstObjectByType<EnemyKaijuParty>();
 
