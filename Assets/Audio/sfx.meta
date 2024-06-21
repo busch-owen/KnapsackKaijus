@@ -1,7 +1,12 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Audio/sfx.meta
 guid: 50ab4993b70e4424380a8a0a3e528fac
 folderAsset: yes
 DefaultImporter:
+========
+guid: b36c129caf2a3b0428941991536c7245
+PrefabImporter:
+>>>>>>>> origin/delete-this-is-30-seconds-plox:Assets/Prefabs/Kaiju/KaijuHandlers/[EnemyKaijuParty].prefab.meta
   externalObjects: {}
   userData: 
   assetBundleName: 
