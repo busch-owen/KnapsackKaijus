@@ -119,12 +119,12 @@ public class Kaiju : MonoBehaviour
         if (movePerformed.CombatType == CombatType.Physical)
         {
             //_currentHealth -= damageToDeal / statLevelMultiplier * (_localDefense / 2.5f) * effectiveMultiplier;
-            StartCoroutine(LerpHealthValue(damageToDeal / statLevelMultiplier * (_localDefense / 2.5f) * effectiveMultiplier, effectiveMultiplier * 2));
+            StartCoroutine(LerpHealthValue(damageToDeal / statLevelMultiplier * (_localDefense / 2.5f) * effectiveMultiplier, effectiveMultiplier * 12));
         }
         else
         {
             //_currentHealth -= damageToDeal / statLevelMultiplier * (_localSpDefense / 2.5f) * effectiveMultiplier;
-            StartCoroutine(LerpHealthValue(damageToDeal / statLevelMultiplier * (_localSpDefense / 2.5f) * effectiveMultiplier, effectiveMultiplier * 2));
+            StartCoroutine(LerpHealthValue(damageToDeal / statLevelMultiplier * (_localSpDefense / 2.5f) * effectiveMultiplier, effectiveMultiplier * 12));
         }
     }
 
@@ -183,7 +183,7 @@ public class Kaiju : MonoBehaviour
 
         while (!Mathf.Approximately(CurrentHealth, newValue))
         {
-            CurrentHealth = Mathf.MoveTowards(CurrentHealth, newValue, speed * Time.fixedDeltaTime);
+            CurrentHealth = Mathf.MoveTowards(CurrentHealth, newValue, speed * Time.deltaTime);
             bool isPlayer = GetComponent<PlayerKaiju>();
             
             if (isPlayer)

@@ -75,14 +75,11 @@ public class BattleMenuController : MonoBehaviour
         ButtonPressed();
     }
 
-    private void FixedUpdate()
-    {
-    }
-
     public bool CheckIfAllDead()
     {
         int deadKaiju = 0;
         int activeKaiju = 0;
+        
         foreach (PlayerKaiju kaiju in _spawner.SpawnedKaiju)
         {
             if(!kaiju) continue;
@@ -91,14 +88,22 @@ public class BattleMenuController : MonoBehaviour
                 activeKaiju++;
                 Debug.Log(activeKaiju);
             }
-            if (kaiju.IsDead) deadKaiju++;
-            if (deadKaiju >= activeKaiju)
+        }
+
+        for (int i = 0; i < activeKaiju; i++)
+        {
+            if (_spawner.SpawnedKaiju[i].IsDead)
             {
-                if(_statusHandler.DetailsToDisplay.Count <= 0)
-                    _statusHandler.DisplayBattleLost();
-                return true;
+                deadKaiju++;
             }
         }
+
+        if (deadKaiju >= activeKaiju)
+        {
+            _statusHandler.DisplayBattleLost();
+            return true;
+        }
+        
         return false;
     }
 
@@ -188,7 +193,7 @@ public class BattleMenuController : MonoBehaviour
                 _kaijuButtons[i].onClick.AddListener(delegate{RenewPlayerStatValues(); RefreshAttackButtons();});
                 _kaijuButtons[i].onClick.AddListener(delegate{_statusHandler.AddToDetails($"Go, {_spawner.SpawnedKaiju[kaijuIndex]?.KaijuStats.KaijuName}!");});
                 _kaijuButtons[i].onClick.AddListener(delegate{ StartCoroutine(_statusHandler.DisplayDetails());});
-                
+
                 _kaijuButtons[i].onClick.AddListener(ReturnToMainMenu);
             }
         }
@@ -217,6 +222,7 @@ public class BattleMenuController : MonoBehaviour
         _currentMenu.SetActive(false);
         interactionMenu.SetActive(true);
         _eventSystem.SetSelectedGameObject(interactionMenu.GetComponentInChildren<Button>().gameObject);
+        RefreshKaijuButtons();
     }
 
     //Detects if the cancel button was pressed which will tell the UI manager to return to previous menu
