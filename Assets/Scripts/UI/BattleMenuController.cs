@@ -75,14 +75,11 @@ public class BattleMenuController : MonoBehaviour
         ButtonPressed();
     }
 
-    private void FixedUpdate()
-    {
-    }
-
     public bool CheckIfAllDead()
     {
         int deadKaiju = 0;
         int activeKaiju = 0;
+        
         foreach (PlayerKaiju kaiju in _spawner.SpawnedKaiju)
         {
             if(!kaiju) continue;
@@ -91,14 +88,22 @@ public class BattleMenuController : MonoBehaviour
                 activeKaiju++;
                 Debug.Log(activeKaiju);
             }
-            if (kaiju.IsDead) deadKaiju++;
-            if (deadKaiju >= activeKaiju)
+        }
+
+        for (int i = 0; i < activeKaiju; i++)
+        {
+            if (_spawner.SpawnedKaiju[i].IsDead)
             {
-                if(_statusHandler.DetailsToDisplay.Count <= 0)
-                    _statusHandler.DisplayBattleLost();
-                return true;
+                deadKaiju++;
             }
         }
+
+        if (deadKaiju >= activeKaiju)
+        {
+            _statusHandler.DisplayBattleLost();
+            return true;
+        }
+        
         return false;
     }
 
