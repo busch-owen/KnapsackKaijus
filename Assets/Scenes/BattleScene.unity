@@ -2863,56 +2863,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 516609840}
   m_CullTransparentMesh: 1
---- !u!1 &538586467
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 538586469}
-  - component: {fileID: 538586468}
-  m_Layer: 0
-  m_Name: '[EnemyKaijuParty]'
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &538586468
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 538586467}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f70981351701724492bae65fc018a46, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <KaijuInParty>k__BackingField:
-  - {fileID: 3287319752907483775, guid: 7ccb57199c56497498b0a36f0c48baf1, type: 3}
-  - {fileID: 3287319752907483775, guid: 576701cd59b933c4ca19fe0d48a577d6, type: 3}
-  - {fileID: 3287319752907483775, guid: d4b03929235211e49aa86f71375ece68, type: 3}
-  - {fileID: 3287319752907483775, guid: e452de55c046a87418a537d6fef4d654, type: 3}
-  - {fileID: 3287319752907483775, guid: 468061e9591d82147918f38ef4e666e7, type: 3}
---- !u!4 &538586469
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 538586467}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.3831859, y: -0.2629707, z: -0.008760797}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &549822370
 GameObject:
   m_ObjectHideFlags: 0
@@ -4655,57 +4605,63 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!1 &859004628
-GameObject:
+--- !u!1001 &853334137
+PrefabInstance:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 859004630}
-  - component: {fileID: 859004629}
-  m_Layer: 0
-  m_Name: '[PlayerKaijuParty]'
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &859004629
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 859004628}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b385c24fdc67e72448f4504d8bc580e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <KaijuInParty>k__BackingField:
-  - {fileID: 6758960550268399841, guid: 881fd7c10ad414d459243134965e2515, type: 3}
-  - {fileID: 6758960550268399841, guid: ddabdc5c461272140ae41e456737b50a, type: 3}
-  - {fileID: 6758960550268399841, guid: cb17d8a513a343449ad32a68cb57855b, type: 3}
-  - {fileID: 6758960550268399841, guid: 7e6d667748a3cc641a801c5e1ab61a15, type: 3}
-  - {fileID: 6758960550268399841, guid: 950666aa5b2433e4c9287ddc73ad098c, type: 3}
-  - {fileID: 0}
---- !u!4 &859004630
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 859004628}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 81.93754, y: 70.12795, z: 4.260763}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 324011536231870549, guid: 9e5a0a6f1cf4116499391193ce508f08, type: 3}
+      propertyPath: m_Name
+      value: '[KaijuSpawner]'
+      objectReference: {fileID: 0}
+    - target: {fileID: 5370564431965042584, guid: 9e5a0a6f1cf4116499391193ce508f08, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 81.93754
+      objectReference: {fileID: 0}
+    - target: {fileID: 5370564431965042584, guid: 9e5a0a6f1cf4116499391193ce508f08, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 70.12795
+      objectReference: {fileID: 0}
+    - target: {fileID: 5370564431965042584, guid: 9e5a0a6f1cf4116499391193ce508f08, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4.260763
+      objectReference: {fileID: 0}
+    - target: {fileID: 5370564431965042584, guid: 9e5a0a6f1cf4116499391193ce508f08, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5370564431965042584, guid: 9e5a0a6f1cf4116499391193ce508f08, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5370564431965042584, guid: 9e5a0a6f1cf4116499391193ce508f08, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5370564431965042584, guid: 9e5a0a6f1cf4116499391193ce508f08, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5370564431965042584, guid: 9e5a0a6f1cf4116499391193ce508f08, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5370564431965042584, guid: 9e5a0a6f1cf4116499391193ce508f08, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5370564431965042584, guid: 9e5a0a6f1cf4116499391193ce508f08, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9e5a0a6f1cf4116499391193ce508f08, type: 3}
 --- !u!1 &934011957
 GameObject:
   m_ObjectHideFlags: 0
@@ -10057,10 +10013,8 @@ SceneRoots:
   - {fileID: 3713825135017633789}
   - {fileID: 934011959}
   - {fileID: 45085141}
-  - {fileID: 1116617962}
-  - {fileID: 859004630}
-  - {fileID: 538586469}
-  - {fileID: 1602323854}
-  - {fileID: 293252435}
   - {fileID: 603821533}
   - {fileID: 1588572629}
+  - {fileID: 853334137}
+  - {fileID: 5877927644572862161}
+  - {fileID: 3133912644608478437}

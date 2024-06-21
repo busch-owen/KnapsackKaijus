@@ -123,6 +123,7 @@ public class BattleMenuController : MonoBehaviour
         
         _currentMenu = menuToOpen;
         interactionMenu.SetActive(false);
+        RefreshAttackButtons();
     }
 
     private void RefreshAttackButtons()

@@ -17,7 +17,6 @@ public class GameManager : Singleton<GameManager>
     {
         GameState = GameState.ROAM;
         _player = FindFirstObjectByType<PlayerController>();
-        _enemyKaiju = FindFirstObjectByType<EnemyKaijuSpawner>();
 
         _player.OnEncounter += EnterBattle;
         _player.OnEnterTrainerView += (Collider2D trainerCollider) =>
@@ -25,8 +24,6 @@ public class GameManager : Singleton<GameManager>
             var trainer = trainerCollider.GetComponent<Trainer>();
             if (trainer != null) { StartCoroutine(trainer.TriggerTrainerBattle(_player)); }
         };
-
-        _enemyKaiju.OnBattleOver += BattleOver;
     }
 
     void Update()
@@ -41,12 +38,14 @@ public class GameManager : Singleton<GameManager>
     {
         GameState = GameState.BATTLE;
         SceneManager.LoadScene(_battleScene);
+        _enemyKaiju = FindFirstObjectByType<EnemyKaijuSpawner>();
     }
 
     void BattleOver()
     {
         GameState = GameState.ROAM;
         SceneManager.LoadScene(_overWorldScene);
+        _enemyKaiju.OnBattleOver += BattleOver;
     }
 }
 
