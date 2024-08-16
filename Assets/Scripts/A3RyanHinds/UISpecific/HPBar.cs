@@ -12,6 +12,7 @@ public class HPBar : MonoBehaviour
     public void SetHealth(int amount)
     {
         healthBar.maxValue = amount;
+        healthBar.value = amount;
     }
 
     public void ChangeHealth(int amount) => OnHealthChanged?.Invoke(amount);

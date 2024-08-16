@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: DarkRai
   m_EditorClassIdentifier: 
   KaijuName: Dark Rai
-  FrontImage: {fileID: 2128479207, guid: e96768e510a25434bbe90636afec867d, type: 3}
-  BackImage: {fileID: 1340088300, guid: 5bbaa90895fcae44dba1c3727f917541, type: 3}
+  <FrontImage>k__BackingField: {fileID: 2128479207, guid: e96768e510a25434bbe90636afec867d, type: 3}
+  <BackImage>k__BackingField: {fileID: 1340088300, guid: 5bbaa90895fcae44dba1c3727f917541, type: 3}
   <MaxHP>k__BackingField: 50
   <Attack>k__BackingField: 35
   <Defence>k__BackingField: 35

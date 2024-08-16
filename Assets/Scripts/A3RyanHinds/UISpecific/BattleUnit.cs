@@ -17,5 +17,9 @@ public class BattleUnit : MonoBehaviour
         {
             GetComponent<Image>().sprite = Kaiju.KaijuBase.BackImage;
         }
+        else
+        {
+            GetComponent<Image>().sprite = Kaiju.KaijuBase.FrontImage;
+        }
     }
 }
