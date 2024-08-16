@@ -11,8 +11,8 @@ public class KaijuBase : ScriptableObject
 
     #region Kaiju Appearance
     [Header("Appearance")]
-    [field: SerializeField] Sprite FrontImage;
-    [field: SerializeField] Sprite BackImage;
+    [field: SerializeField] public Sprite FrontImage { get; private set; }
+    [field: SerializeField] public Sprite BackImage { get; private set; }
     #endregion
 
     #region Stats
