@@ -9,7 +9,7 @@ public class KaijuA3 : MonoBehaviour
 
     public int HP { get; set; }
 
-    [field: SerializeField] public  List<MoveStats> learnedMoves;
+    [field: SerializeField] public  List<MoveStats> LearnedMoves;
 
     public KaijuA3(KaijuBase kaijuBase, int level)
     {
@@ -18,7 +18,7 @@ public class KaijuA3 : MonoBehaviour
         this.Name = kaijuBase.KaijuName;
         this.HP = KaijuBase.MaxHP;
 
-        learnedMoves = new List<MoveStats>();
+        LearnedMoves = new List<MoveStats>();
     }
 
     public int Attack

@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class BattleSystem : MonoBehaviour
@@ -32,6 +33,8 @@ public class BattleSystem : MonoBehaviour
         enemyBattler.SetupBattle();
         enemyHUD.SetKaijuData(enemyBattler.Kaiju);
 
+        battleDialogue.SetMoveName(playerBattler.Kaiju.LearnedMoves);
+
         yield return battleDialogue.TypeText($"A wild {enemyBattler.Kaiju.KaijuBase.KaijuName} Appeared!");
         yield return new WaitForSeconds(1f);
 
@@ -43,7 +46,6 @@ public class BattleSystem : MonoBehaviour
         battleState = BattleState.PlayerAction;
         StartCoroutine(battleDialogue.TypeText("Choose an action"));
         battleDialogue.EnablActionSelector(true);
-        battleDialogue.UpdateActionSelector(_currentAction);
     }
 
     void PlayerMove()
@@ -86,6 +88,14 @@ public class BattleSystem : MonoBehaviour
         else if (_currentAction == 1)
         {
             // Run
+        }
+    }
+
+    void FixedUpdate()
+    {
+        if (battleState == BattleState.PlayerAction)
+        {
+            battleDialogue.UpdateActionSelector(_currentAction);
         }
     }
 }

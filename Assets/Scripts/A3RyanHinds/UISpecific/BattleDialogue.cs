@@ -71,10 +71,21 @@ public class BattleDialogue : MonoBehaviour
         {
             if (i == indexSelection)
             {
-                while (i == indexSelection)
-                {
-                    colorShiftCoroutine = StartCoroutine(ColorShift(i));
-                }
+                colorShiftCoroutine = StartCoroutine(ColorShift(i));
+            }
+        }
+    }
+    public void SetMoveName(List<MoveStats> moves)
+    {
+        for (int i = 0; i < moveTexts.Count; i++)
+        {
+            if (i < moves.Count)
+            {
+                moveTexts[i].text = moves[i].MoveName;
+            }
+            else
+            {
+                moveTexts[i].text = "---";
             }
         }
     }
