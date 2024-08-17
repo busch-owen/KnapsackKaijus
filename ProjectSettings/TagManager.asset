@@ -9,6 +9,7 @@ TagManager:
   - HealthBarFill
   - PlayerBattler
   - EnemyBattler
+  - BattleCamera
   layers:
   - Default
   - TransparentFX

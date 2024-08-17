@@ -8,15 +8,20 @@ public class GameManager : Singleton<GameManager>
     PlayerController _player;
     EnemyKaijuSpawner _enemyKaiju;
 
+    InputManager _inputManager;
+
+    [SerializeField] GameObject _battleCamera;
+    [SerializeField] GameObject _mainCamera;
+
     public GameState GameState;
 
-    string _battleScene = "BattleScene";
-    string _overWorldScene = "Route_01";
-
-    private void Start()
+    private void Awake()
     {
-        GameState = GameState.ROAM;
+        GameState = GameState.BATTLE;
         _player = FindFirstObjectByType<PlayerController>();
+        _inputManager = FindFirstObjectByType<InputManager>();
+        _battleCamera = GameObject.FindGameObjectWithTag("BattleCamera");
+        _mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
 
         _player.OnEncounter += EnterBattle;
         _player.OnEnterTrainerView += (Collider2D trainerCollider) =>
@@ -26,26 +31,45 @@ public class GameManager : Singleton<GameManager>
         };
     }
 
+    void Start()
+    {
+        // this is temporary
+        _inputManager.EnableInput(GameInputType.Battle);
+        _inputManager.DisableInput(GameInputType.Player);
+    }
+
     void Update()
     {
-        if (GameState == GameState.ROAM)
+        if (GameState == GameState.BATTLE)
         {
-            _player.HandleUpdate();
+            _inputManager.EnableInput(GameInputType.Battle);
+            _inputManager.DisableInput(GameInputType.Player);
+        }
+        else if (GameState == GameState.ROAM)
+        {
+            _inputManager.EnableInput(GameInputType.Player);
+            _inputManager.DisableInput(GameInputType.Battle);
         }
     }
 
     void EnterBattle()
     {
         GameState = GameState.BATTLE;
-        SceneManager.LoadScene(_battleScene);
-        _enemyKaiju = FindFirstObjectByType<EnemyKaijuSpawner>();
+        _battleCamera.SetActive(true);
+        _mainCamera.SetActive(false);
     }
 
     void BattleOver()
     {
         GameState = GameState.ROAM;
-        SceneManager.LoadScene(_overWorldScene);
+        _battleCamera.SetActive(false);
+        _mainCamera.SetActive(true);
         _enemyKaiju.OnBattleOver += BattleOver;
+    }
+
+    void OnDisable()
+    {
+        _player.OnEncounter -= EnterBattle;
     }
 }
 
