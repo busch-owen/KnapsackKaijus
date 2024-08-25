@@ -96,13 +96,11 @@ public class PlayerController : MonoBehaviour
         if (trainerDetection != null)
         {
             OnEnterTrainerView?.Invoke(trainerDetection);
-            Debug.Log("You found a trainer!");
         }
     }
 
     void CheckForEncounters()
     {
-        Debug.Log("Checking Encounter");
         if (Physics2D.BoxCast(transform.position, new Vector2(1f, 1f), 0f, Vector2.one, _encounterRadius, LayerMask.GetMask("Encounter")))
         {
             int randomEncounterChance = UnityEngine.Random.Range(1, 101);

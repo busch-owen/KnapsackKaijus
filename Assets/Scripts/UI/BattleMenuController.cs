@@ -59,7 +59,7 @@ public class BattleMenuController : MonoBehaviour
 
     private void Start()
     {
-        _playerKaiju = FindFirstObjectByType<PlayerKaiju>();
+        _playerKaiju ??= FindFirstObjectByType<PlayerKaiju>();
         _enemyKaiju = FindFirstObjectByType<EnemyKaiju>();
         RenewEnemyStatValues();
         RenewPlayerStatValues();
@@ -130,7 +130,8 @@ public class BattleMenuController : MonoBehaviour
     {
         for (var i = 0; i < _attackButtons.Length; i++)
         {
-            if (_playerKaiju.LearnedMoves[i] != null)
+            _playerKaiju ??= FindFirstObjectByType<PlayerKaiju>();
+            if (_playerKaiju.LearnedMoves[i])
             {
                 var moveIndex = i;
                 _attackButtons[i].onClick.RemoveAllListeners();
